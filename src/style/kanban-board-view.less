@@ -1,0 +1,48 @@
+.kanban-board-view {
+
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+  .kanban-columns-wrapper {
+
+    position: relative;
+    height: 90%;
+    width: 90%;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    .kanban-column {
+      display: inline-block;
+      position: relative;
+      width: 33%;
+      height: 90%;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+      border-right: 1px solid lightblue;
+
+      .kanban-column-content {
+        position: relative;
+        width: 90%;
+        height: 90%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #e8e8e8;
+      }
+    }
+
+    .first-column {
+      border-left: 1px solid lightblue;
+    }
+
+    .lastColumn {
+
+    }
+  }
+}
+
+@import 'ticket-view';
