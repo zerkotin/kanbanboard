@@ -18,10 +18,8 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
     @render()
 
   render: ->
-    @$component = $ template(@columnClass)
+    @$component = $ template(@columnClass, @columnTitle)
     @$el.append @$component
-
-    @$component.find('.kanban-column-title').html(@columnTitle)
 
     if @columnClass
       @$component.addClass @columnClass
@@ -38,8 +36,7 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
 
     $ticketsEl #returning this, otherwise it creates array of results because of the for loop
 
-template = (columnClass) ->
+template = (columnClass, columnTitle) ->
   """
-  <div class="kanban-column"><div class="kanban-column-title"></div><div class="kanban-column-content"></div></div>
+  <div class="kanban-column"><div class="kanban-column-title">#{columnTitle}</div><div class="kanban-column-content"></div></div>
   """
-
