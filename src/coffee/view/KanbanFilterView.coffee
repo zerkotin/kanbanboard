@@ -8,8 +8,6 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
 
   ticketCollection: null
 
-
-
   events:
     'click .kanban-button': '_onFilterClick'
 
@@ -50,7 +48,7 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
 
 template = ->
   """
-  <span class='kanban-label key-label'>Key:</span><input class='kanban-input key-input' type='text'></input>
-  <span class='kanban-label team-label'>Team:</span><input class='kanban-input team-input' type='text'></input>
-  <span class='kanban-button filter-button'>Filter</span>
+  <span class="kanban-label key-label">Key:</span><input placeholder="paste your redmine api key" class="kanban-input key-input" type="text"></input>
+  <span class="kanban-label team-label">Team:</span><input class="kanban-input team-input" type="text"></input>
+  <span class="kanban-button filter-button">Filter</span>
   """

@@ -13,7 +13,7 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
 
   initialize: (options) ->
     {@columnClass, @columnTitle, @statuses, @ticketCollection} = options
-    @listenTo @ticketCollection, 'sync', @renderTickets
+    @listenTo @ticketCollection, 'sync', @_renderTickets
 
     @render()
 
@@ -26,15 +26,17 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
     if @columnClass
       @$component.addClass @columnClass
 
-  renderTickets: ->
+  _renderTickets: ->
     $ticketsEl = @$component.find('.kanban-column-content')
+    $ticketsEl.empty()
 
     for ticket in @ticketCollection.models
       if ticket.get('status').name in @statuses
-        new TicketView(el: $ticketsEl, ticketData: ticket)
+        $ticketEl = $('<div class="ticket-view"></div>')
+        $ticketsEl.append $ticketEl
+        new TicketView(el: $ticketEl, ticketData: ticket)
 
     $ticketsEl #returning this, otherwise it creates array of results because of the for loop
-
 
 template = (columnClass) ->
   """
