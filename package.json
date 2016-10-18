@@ -2,10 +2,12 @@
   "name": "kanbanboard",
   "version": "1.0.0",
   "dependencies": {
+    "express": "^4.14.0",
     "grunt": "^1.0.1",
     "grunt-browserify": "^5.0.0",
     "grunt-contrib-coffee": "^1.0.0",
     "grunt-contrib-less": "^1.4.0",
-    "grunt-contrib-watch": "^1.0.0"
+    "grunt-contrib-watch": "^1.0.0",
+    "request": "^2.75.0"
   }
 }

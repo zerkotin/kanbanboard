@@ -1,4 +1,5 @@
 {KanbanColumnView} = require './KanbanColumnView'
+{KanbanFilterView} = require './KanbanFilterView'
 {TicketCollection} = require '../model/TicketCollection'
 
 exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
@@ -6,9 +7,9 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
   className: 'kanban-board-view'
 
   columns: [
-    {columnClass: 'first-column', columnTitle: 'TODO', status: 'TODO'},
-    {columnTitle: 'In Progress...', status: 'IN_PROGRESS'},
-    {columnClass: 'last-column', columnTitle: 'Done.', status: 'RESOLVED'}
+    {columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued', 'Committed ']},
+    {columnTitle: 'In Progress...', statuses: ['In Progress']},
+    {columnClass: 'last-column', columnTitle: 'Resolved.', statuses: ['Resolved']}
   ]
 
   ticketCollection: null
@@ -21,6 +22,9 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
     @$el.append template()
 
     $wrapper = @$('.kanban-columns-wrapper')
+    $header = @$('.kanban-filter-view')
+
+    new KanbanFilterView(el: $header, ticketCollection: @ticketCollection)
 
     for column in @columns
       column.el = $wrapper #providing element for the view
@@ -28,11 +32,12 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
       new KanbanColumnView(column)
 
-    @ticketCollection.fetch()
+    return $wrapper #not a must
 
 
 template = ->
   """
+  <div class="kanban-filter-view"></div>
   <div class='kanban-columns-wrapper'></div>
   """
 

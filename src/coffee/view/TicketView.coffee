@@ -18,9 +18,9 @@ template = (data) ->
   <div class="ticket-view">
     <div class="ticket-header">
       <span class="ticket-id">#{data.get('id')}</span>
-      <span class="ticket-owner">#{data.get('owner')}</span>
+      <span class="ticket-owner">#{data.get('author').name}</span>
     </div>
-    <div class="ticket-title">#{data.get('title')}</div>
+    <div class="ticket-title">#{data.get('subject')}</div>
     <div class="ticket-description">#{data.get('description')}</div>
   </div>
   """
