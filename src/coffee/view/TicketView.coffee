@@ -22,6 +22,7 @@ template = (data) ->
     </div>
     <div class="ticket-title">#{data.get('subject')}</div>
     <div class="ticket-description">#{data.get('description')}</div>
+    <div class="ticket-status">#{data.get('status').name}</div>
   </div>
   """
 

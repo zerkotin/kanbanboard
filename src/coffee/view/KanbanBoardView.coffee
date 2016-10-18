@@ -9,7 +9,7 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
   columns: [
     {columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued', 'Committed ']},
     {columnTitle: 'In Progress...', statuses: ['In Progress']},
-    {columnClass: 'last-column', columnTitle: 'Resolved.', statuses: ['Resolved']}
+    {columnClass: 'last-column', columnTitle: 'DONE', statuses: ['Resolved', 'Feedback', 'Closed', 'Rejected']}
   ]
 
   ticketCollection: null
