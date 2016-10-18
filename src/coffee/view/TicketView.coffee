@@ -31,8 +31,6 @@ exports.TicketView = class TicketView extends Backbone.View
       @$('.ticket-description').hide()
 
 
-
-
 template = (data) ->
   """
   <div class="ticket-header">
