@@ -2,14 +2,15 @@
 
 this is a kanbanboard that is working with redmine
 
-to run it, simply clone it
-run:
+to run it, simply clone it and run:
+```
 npm install -g bower
 npm install -g grunt-cli
 npm install
 bower install
 grunt
 npm start
+```
 
 go to localhost:9090 in your browser
 
