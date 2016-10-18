@@ -1,18 +1,20 @@
 {KanbanColumnView} = require './KanbanColumnView'
+{TicketCollection} = require '../model/TicketCollection'
 
 exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
   className: 'kanban-board-view'
 
   columns: [
-    {columnClass: 'first-column', columnTitle: 'TODO'},
-    {columnTitle: 'In Progress...'},
-    {columnClass: 'last-column', columnTitle: 'Done.'}
+    {columnClass: 'first-column', columnTitle: 'TODO', status: 'TODO'},
+    {columnTitle: 'In Progress...', status: 'IN_PROGRESS'},
+    {columnClass: 'last-column', columnTitle: 'Done.', status: 'RESOLVED'}
   ]
 
-  #TODO create a collection that takes all that fetches all the ticktes and renderes TicketViews
+  ticketCollection: null
 
   initialize: ->
+    @ticketCollection = new TicketCollection()
     @render()
 
   render: ->
@@ -22,9 +24,11 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
     for column in @columns
       column.el = $wrapper #providing element for the view
+      column.ticketCollection = @ticketCollection
+
       new KanbanColumnView(column)
 
-    return @$el #this is not necessary
+    @ticketCollection.fetch()
 
 
 template = ->
