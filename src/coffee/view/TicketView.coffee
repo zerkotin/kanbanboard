@@ -27,10 +27,10 @@ exports.TicketView = class TicketView extends Backbone.View
     @shouldShowDescription = not @shouldShowDescription
 
     if @shouldShowDescription
-      @$('.ticket-description').show()
+      @$('.ticket-description').slideDown()
       @$('.ticket-header').addClass 'expanded'
     else
-      @$('.ticket-description').hide()
+      @$('.ticket-description').slideUp()
       @$('.ticket-header').removeClass 'expanded'
 
 
