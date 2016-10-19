@@ -1,10 +1,10 @@
 # kanbanboard installation notes
 
-this is a kanbanboard integrates with redmine API to provide a better view/dashboard
+this is a kanbanboard integrates with redmine API to provide a better view/dashboard.
 
 clone the project, and change KanbanConfig.coffee to contain the correct URL.
 
-to install run the following commands in the reposiroty's base directory:
+to install, run the following commands in the reposiroty's base directory:
 ```
 npm install -g bower
 npm install -g grunt-cli
