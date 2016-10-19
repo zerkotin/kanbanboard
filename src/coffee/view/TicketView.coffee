@@ -1,11 +1,13 @@
 
+{KanbanConfig} = require '../config/KanbanConfig'
+
 exports.TicketView = class TicketView extends Backbone.View
 
   className: 'ticket-view'
 
   ticketData: null
 
-  shouldShowDescription: false #by default false, this is why style is set to display: none
+  shouldShowDescription: false
 
   events:
     'click .ticket-id': '_onTicketClick'
@@ -16,29 +18,32 @@ exports.TicketView = class TicketView extends Backbone.View
     @render()
 
   render: ->
-    $component = $ template(@ticketData)
-    @$el.append $component
+    @$el.append(template(@ticketData))
 
   _onTicketClick: ->
-    window.open('https://project.osthus.com/issues/' + @ticketData.get('id'))
+    window.open(KanbanConfig.redmineIssuesUrl + @ticketData.get('id'))
 
   _onTitleClick: ->
     @shouldShowDescription = not @shouldShowDescription
 
     if @shouldShowDescription
       @$('.ticket-description').show()
+      @$('.ticket-header').addClass 'expanded'
     else
       @$('.ticket-description').hide()
+      @$('.ticket-header').removeClass 'expanded'
 
 
 template = (data) ->
   """
   <div class="ticket-header">
     <span class="ticket-id">#{data.get('id')}</span>
-    <span class="ticket-owner">#{data.get('author').name}</span>
+    <span class="ticket-title">#{data.get('subject')}</span>
   </div>
-  <div class="ticket-title">#{data.get('subject')}</div>
   <div class="ticket-description" style="display: none">#{data.get('description')}</div>
-  <div class="ticket-status">#{data.get('status').name}</div>
-  """
+  <div class="ticket-footer">
+    <span class="ticket-owner">#{data.get('author').name}</span>
+    <span class="ticket-status">#{data.get('status').name}</span>
+  </div>
 
+  """

@@ -2,14 +2,15 @@
   font-size: 14px;
   padding: 5px 13px 5px 13px;
   text-align: center;
-  box-shadow: 1px 1px 2px #a9a9a9;
-  background: linear-gradient(to bottom, white, #e8e8e8);
+  box-shadow: 1px 1px 2px @box-shaddow-light;
+  background: linear-gradient(to bottom, white, @gradient-grey);
   border-radius: 5px;
-  color: #33acfe;
+  color: @dark-blue;
 
   &:hover {
     cursor: pointer;
-    color: #2e75b1;
+    color: @light-blue;
+    box-shadow: 2px 2px 2px @box-shaddow-light;
   }
 
   &:active {
@@ -21,13 +22,16 @@
 .kanban-input {
   border-radius: 20px;
   border: 1px solid #d8d8d8;
-  background: linear-gradient(to top, white, #e8e8e8);
+  background: linear-gradient(to top, white, @gradient-grey);
   outline: none;
   padding: 5px 10px 5px 10px;
   width: 200px;
+  color: grey;
+  font-size: 14px;
 }
 
 .kanban-label {
   font-size: 14px;
   padding: 5px 10px 5px 10px;
+  color: grey;
 }

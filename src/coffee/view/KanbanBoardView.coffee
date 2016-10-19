@@ -17,24 +17,25 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
     @render()
 
   render: ->
-    @$el.append template()
+
+    filterView = new KanbanFilterView(ticketCollection: @ticketCollection)
+
+    @$el.append filterView.el
+    @$el.append wrapperTemplate()
 
     $wrapper = @$('.kanban-columns-wrapper')
-    $header = @$('.kanban-filter-view')
 
-    new KanbanFilterView(el: $header, ticketCollection: @ticketCollection)
+    for columnConfig in @columns
+      columnConfig.ticketCollection = @ticketCollection
+      columnConfig.size = Math.floor(100 / @columns.length)
 
-    for column in @columns
-      column.el = $wrapper #providing element for the view
-      column.ticketCollection = @ticketCollection
-
-      new KanbanColumnView(column)
+      view = new KanbanColumnView(columnConfig)
+      $wrapper.append(view.el)
 
     return $wrapper #not a must
 
 
-template = ->
+wrapperTemplate = ->
   """
-  <div class="kanban-filter-view"></div>
   <div class='kanban-columns-wrapper'></div>
   """

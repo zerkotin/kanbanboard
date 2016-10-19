@@ -2,7 +2,6 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
 
   className: 'kanban-filter-view'
 
-  $component: null
   $team: null
   $key: null
 
@@ -16,8 +15,7 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
     @render()
 
   render: ->
-    @$component = $ template()
-    @$el.append @$component
+    @$el.append template()
 
     @$team = @$('.team-input')
     @$key = @$('.key-input')

@@ -7,21 +7,16 @@ exports.Router = class Router extends Backbone.Router
 
   routes:
     '': 'default'
+    'normal': 'normal'
 
   default: ->
-    @_openNewPage('kanban-board-view', KanbanBoardView, {columns: KanbanConfig.teamViewConfig})
+    @_browseToPage(KanbanBoardView, {columns: KanbanConfig.teamViewConfig})
 
-  _openNewPage: (className, viewConstructor, options) ->
+  normal: ->
+    @_browseToPage(KanbanBoardView, {columns: KanbanConfig.normalViewConfig})
+
+
+  _browseToPage: (viewConstructor, viewOptions) ->
     @currentView?.remove()
-
-    $el = $(containerTemplate className)
-    $('body').append $el
-
-    viewOptions = $.extend(true, {el: $el}, options)
-
     @currentView = new viewConstructor(viewOptions)
-
-containerTemplate = (className) ->
-  """
-  <div class="#{className}"></div>
-  """
+    $('body').append @currentView.$el
