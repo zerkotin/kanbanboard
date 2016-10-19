@@ -6,16 +6,14 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
   className: 'kanban-board-view'
 
-  columns: [
-    {columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued', 'Committed ']},
-    {columnTitle: 'In Progress...', statuses: ['In Progress']},
-    {columnClass: 'last-column', columnTitle: 'DONE', statuses: ['Resolved', 'Feedback', 'Closed', 'Rejected']}
-  ]
+  columns: null
 
   ticketCollection: null
 
-  initialize: ->
+  initialize: (options) ->
+    {@columns} = options
     @ticketCollection = new TicketCollection()
+
     @render()
 
   render: ->
@@ -40,4 +38,3 @@ template = ->
   <div class="kanban-filter-view"></div>
   <div class='kanban-columns-wrapper'></div>
   """
-

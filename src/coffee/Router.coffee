@@ -1,4 +1,5 @@
 {KanbanBoardView} = require './view/KanbanBoardView'
+{KanbanConfig} = require './config/KanbanConfig'
 
 exports.Router = class Router extends Backbone.Router
 
@@ -8,7 +9,7 @@ exports.Router = class Router extends Backbone.Router
     '': 'default'
 
   default: ->
-    @_openNewPage('kanban-board-view', KanbanBoardView, {})
+    @_openNewPage('kanban-board-view', KanbanBoardView, {columns: KanbanConfig.teamViewConfig})
 
   _openNewPage: (className, viewConstructor, options) ->
     @currentView?.remove()
