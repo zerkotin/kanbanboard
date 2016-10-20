@@ -6,14 +6,19 @@ exports.Router = class Router extends Backbone.Router
   currentView: null
 
   routes:
-    '': 'default'
-    'normal': 'normal'
+    '': 'team'
+    'team': 'team'
+    'po': 'po'
+    'developer': 'developer'
 
-  default: ->
+  team: ->
     @_browseToPage(KanbanBoardView, {columns: KanbanConfig.teamViewConfig})
 
-  normal: ->
-    @_browseToPage(KanbanBoardView, {columns: KanbanConfig.normalViewConfig})
+  po: ->
+    @_browseToPage(KanbanBoardView, {columns: KanbanConfig.poViewConfig})
+
+  developer: ->
+    @_browseToPage(KanbanBoardView, {columns: KanbanConfig.developerViewConfig})
 
 
   _browseToPage: (viewConstructor, viewOptions) ->

@@ -1,5 +1,7 @@
 {KanbanColumnView} = require './KanbanColumnView'
 {KanbanFilterView} = require './KanbanFilterView'
+{SideNavigationView} = require './SideNavigationView'
+{KanbanConfig} = require '../config/KanbanConfig'
 {TicketCollection} = require '../model/TicketCollection'
 
 exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
@@ -18,8 +20,10 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
   render: ->
 
+    sideNavigationView = new SideNavigationView(navigationItems: KanbanConfig.navigationItems)
     filterView = new KanbanFilterView(ticketCollection: @ticketCollection)
 
+    @$el.append sideNavigationView.el
     @$el.append filterView.el
     @$el.append wrapperTemplate()
 
