@@ -21,6 +21,7 @@ grunt
 ```
 
 afterwards, building the project consists of running ```grunt``` or ```grunt distribution```
+
 dont forget to delete ```build``` and ```_temp``` directories before building a distribution version.
 
 
