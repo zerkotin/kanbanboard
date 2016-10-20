@@ -17,12 +17,12 @@ function configSimpleWebServer() {
 
   //handles get to localhost
   app.get('/', function(req, res) {
-     res.sendFile(__dirname + '/app/index.html')
+     res.sendFile(__dirname + '/index.html')
   });
 
   //handles requests for files
   app.get(/^(.+)$/, function(req, res){
-      res.sendFile(__dirname + '/app' + req.params[0]);
+      res.sendFile(__dirname + req.params[0]);
   });
 
   //runs the web server

@@ -4,9 +4,12 @@ module.exports = (grunt) ->
     pkg: grunt.file.readJSON('package.json')
 
     browserify:
-      js:
+      dev:
         src: '_temp/src/coffee/index.js'
-        dest: 'app/index.js'
+        dest: 'build/index.js'
+      dist:
+        src: '_temp/src/coffee/index.js'
+        dest: '_temp/index.js'
 
     watch:
       coffee:
@@ -15,10 +18,13 @@ module.exports = (grunt) ->
       less:
         files: ['src/style/**/*.less']
         tasks: ['less-transpile']
+      server:
+        files: ['src/server/**/*.js']
+        tasks: ['copy-server']
 
     less:
-      development:
-        files: {'app/index.css': 'src/style/index.less'}
+      distribution:
+        files: {'build/index.css': 'src/style/index.less'}
 
     coffee:
       compile:
@@ -34,39 +40,64 @@ module.exports = (grunt) ->
         files: [
           expand: true
           src: ['src/style/fontawesome/fonts/*']
-          dest: 'app/fonts/'
+          dest: 'build/fonts/'
           filter: 'isFile'
           flatten: true
         ]
       html:
         files: [
           src: ['src/index.html']
-          dest: 'app/index.html'
+          dest: 'build/index.html'
+        ]
+      server:
+        files: [
+          expand: true
+          src: ['src/server/*']
+          dest: 'build/'
+          filter: 'isFile'
+          flatten: true
         ]
 
     concat:
       options:
         seperator: ';'
-      vendors:
+      devvendors:
+        src: [
+          'bower_components/jquery/dist/jquery.js',
+          'bower_components/underscore/underscore.js',
+          'bower_components/backbone/backbone.js'
+        ],
+        dest: 'build/vendors.js'
+      distvendors:
         src: [
           'bower_components/jquery/dist/jquery.min.js',
           'bower_components/underscore/underscore-min.js',
           'bower_components/backbone/backbone-min.js'
         ],
-        dest: 'app/vendors.js'
+        dest: '_temp/vendors.js'
 
+    uglify:
+      kanbanboard:
+        files:
+          'build/index.js': ['_temp/index.js']
+      vendors:
+        files:
+          'build/vendors.js': ['_temp/vendors.js']
+
+  #the tasks
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-browserify'
   grunt.loadNpmTasks 'grunt-contrib-less'
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-concat'
+  grunt.loadNpmTasks 'grunt-contrib-uglify'
 
-  grunt.registerTask 'default', ['coffee', 'browserify', 'less', 'copy:fontawesome', 'copy:html', 'concat:vendors']
-  grunt.registerTask 'coffee-transpile', ['coffee', 'browserify']
+  #builds
+  grunt.registerTask 'default', ['coffee', 'browserify:dev', 'less', 'copy', 'concat:devvendors']
+  grunt.registerTask 'distribution', ['coffee', 'browserify:dist', 'less', 'copy', 'concat:distvendors', 'uglify']
+
+  #for watchers
+  grunt.registerTask 'coffee-transpile', ['coffee', 'browserify:dev']
   grunt.registerTask 'less-transpile', ['less']
-
-  #TODO add a minifier and an uglifier
-  #TODO add dev build and distribution build
-  #TODO exclude the source maps from vendors
-  #TODO pack a server folder including a package.json for node modules
+  grunt.registerTask 'copy-server', ['copy:server']
