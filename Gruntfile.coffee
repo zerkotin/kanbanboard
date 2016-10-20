@@ -20,7 +20,7 @@ module.exports = (grunt) ->
       development:
         files: {'app/index.css': 'src/style/index.less'}
 
-    coffee: # need to fix the coffee transpile
+    coffee:
       compile:
         expand: true
         flatten: false
@@ -67,3 +67,6 @@ module.exports = (grunt) ->
   grunt.registerTask 'less-transpile', ['less']
 
   #TODO add a minifier and an uglifier
+  #TODO add dev build and distribution build
+  #TODO exclude the source maps from vendors
+  #TODO pack a server folder including a package.json for node modules
