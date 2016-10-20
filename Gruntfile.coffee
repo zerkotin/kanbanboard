@@ -36,6 +36,11 @@ module.exports = (grunt) ->
         ext: '.js'
 
     copy:
+      favicon:
+        files: [
+          src: ['src/style/favicon.ico']
+          dest: 'build/favicon.ico'
+        ]
       fontawesome:
         files: [
           expand: true

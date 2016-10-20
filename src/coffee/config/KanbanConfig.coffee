@@ -19,9 +19,9 @@ exports.KanbanConfig = {
     {columnClass: 'last-column', columnTitle: 'Resolved', statuses: ['Resolved']}
   ],
   navigationItems: [
-    {path: 'team', template: 'team'},
-    {path: 'po', template: 'po'},
-    {path: 'developer', template: 'developer'}
+    {path: 'team', template: '<i class="fa fa-users" aria-hidden="true"></i>team'},
+    {path: 'po', template: '<i class="fa fa-user-secret" aria-hidden="true"></i>po'},
+    {path: 'developer', template: '<i class="fa fa-laptop" aria-hidden="true"></i>developer'}
   ]
 
 }
