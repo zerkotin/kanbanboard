@@ -19,3 +19,6 @@ go to localhost:9090 in your browser
 to get your api key:
 login to redmine, go to my account,
 and on the right panel, press show api key.
+
+
+Take a look at our wiki page...
