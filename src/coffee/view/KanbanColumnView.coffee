@@ -10,9 +10,10 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
   columnTitle: null
   ticketCollection: null
   statuses: null
+  color: null
 
   initialize: (options) ->
-    {@columnClass, @columnTitle, @statuses, @ticketCollection, @size} = options
+    {@columnClass, @columnTitle, @statuses, @ticketCollection, @size, @color} = options
     @listenTo @ticketCollection, 'sync', @_renderTickets
 
     @render()
@@ -20,6 +21,7 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
   render: ->
     @$el.css('width', @size + '%') if @size
     @$el.addClass @columnClass if @columnClass
+    @$el.css('box-shadow', "0px 20px 5px #{@color} inset") if @color
 
     @$el.append(template(@columnTitle))
 

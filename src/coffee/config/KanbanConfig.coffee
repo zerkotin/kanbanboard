@@ -1,9 +1,9 @@
 exports.KanbanConfig = {
   redmineIssuesUrl: 'https://project.osthus.com/issues/',
   teamViewConfig: [
-    {columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued', 'Groomed', 'Committed ']},
-    {columnTitle: 'In Progress...', statuses: ['In Progress']},
-    {columnClass: 'last-column', columnTitle: 'DONE', statuses: ['Resolved', 'Feedback', 'Closed', 'Rejected']}
+    {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued', 'Groomed', 'Committed ']},
+    {color: '#6c6cf5', columnTitle: 'In Progress...', statuses: ['In Progress']},
+    {color: '#8ac383', columnClass: 'last-column', columnTitle: 'DONE', statuses: ['Resolved', 'Feedback', 'Closed', 'Rejected']}
   ],
   poViewConfig: [
     {columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued', 'Groomed', 'Committed ']},
