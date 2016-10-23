@@ -12,13 +12,13 @@ exports.Router = class Router extends Backbone.Router
     'developer': 'developer'
 
   team: ->
-    @_browseToPage(KanbanBoardView, {columns: KanbanConfig.teamViewConfig})
+    @_browseToPage(KanbanBoardView, {config: KanbanConfig.teamViewConfig})
 
   po: ->
-    @_browseToPage(KanbanBoardView, {columns: KanbanConfig.poViewConfig})
+    @_browseToPage(KanbanBoardView, {config: KanbanConfig.poViewConfig})
 
   developer: ->
-    @_browseToPage(KanbanBoardView, {columns: KanbanConfig.developerViewConfig})
+    @_browseToPage(KanbanBoardView, {config: KanbanConfig.developerViewConfig})
 
 
   _browseToPage: (viewConstructor, viewOptions) ->

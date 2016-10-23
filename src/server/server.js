@@ -10,7 +10,9 @@ configSimpleWebServer(); //should be called last
 
 
 function mapRedmineQueries() {
-  app.get('/issues', redmine.queries.teamIssues);
+  app.get('/teamissues', redmine.queries.teamIssues);
+  app.get('/assignedtomeissues', redmine.queries.assigendToMeIssues);
+  app.get('/createdbymeissues', redmine.queries.createdByMeIssues);
 }
 
 function configSimpleWebServer() {

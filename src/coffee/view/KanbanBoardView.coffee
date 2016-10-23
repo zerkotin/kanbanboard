@@ -4,24 +4,26 @@
 {KanbanConfig} = require '../config/KanbanConfig'
 {TicketCollection} = require '../model/TicketCollection'
 
+#TODO add drag and drop and sync the collection
 exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
   className: 'kanban-board-view'
 
-  columns: null
+  config: null
 
   ticketCollection: null
 
   initialize: (options) ->
-    {@columns} = options
+    {@config} = options
     @ticketCollection = new TicketCollection()
+    @ticketCollection.url = @config.url #running over the url for different screens
 
     @render()
 
   render: ->
 
     sideNavigationView = new SideNavigationView(navigationItems: KanbanConfig.navigationItems)
-    filterView = new KanbanFilterView(ticketCollection: @ticketCollection)
+    filterView = new KanbanFilterView(ticketCollection: @ticketCollection, filterConfig: @config.filter)
 
     @$el.append sideNavigationView.el
     @$el.append filterView.el
@@ -29,9 +31,9 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
     $wrapper = @$('.kanban-columns-wrapper')
 
-    for columnConfig in @columns
+    for columnConfig in @config.columns
       columnConfig.ticketCollection = @ticketCollection
-      columnConfig.size = Math.floor(100 / @columns.length)
+      columnConfig.size = Math.floor(100 / @config.columns.length)
 
       view = new KanbanColumnView(columnConfig)
       $wrapper.append(view.el)

@@ -11,7 +11,7 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
     'click .kanban-button': '_onFilterClick'
 
   initialize: (options) ->
-    {@ticketCollection} = options
+    {@ticketCollection, @filterConfig} = options
 
     @listenTo @ticketCollection, 'sync', @_stopSpinner
     @render()
@@ -21,6 +21,9 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
 
     @$team = @$('.team-input')
     @$key = @$('.key-input')
+
+    unless @filterConfig.showTeamFilter #hide team filter if unnecesary
+      @$('.team').hide()
 
     @_loadFromLocalStorage()
 
@@ -54,7 +57,7 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
 template = ->
   """
   <span class="kanban-label key-label">Key:</span><input placeholder="paste your redmine api key" class="kanban-input key-input" type="password"></input>
-  <span class="kanban-label team-label">Team:</span><input class="kanban-input team-input" type="text"></input>
+  <span class="kanban-label team-label team">Team:</span><input class="kanban-input team-input team" type="text"></input>
   <span class="kanban-button filter-button">Filter</span>
   <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
   """

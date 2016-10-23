@@ -45,13 +45,54 @@ module.exports = (function (){
     });
   }
 
+  #TODO add more filter options on the queries
   //Query functions
+  function assigendToMeIssues(req, res) {
+    if (isApiKeyMissing(req, res)) {
+        return;
+    }
+    request({
+            url: config.redmineRoot + 'issues.json?key=' + req.query.key+'&limit=100&offset=0&assigned_to_id=me',
+            json: true
+        },
+        function (error, response, body) {
+            if (!error && response.statusCode === 200) {
+                //makeCustomFields(body);
+                res.json(body);
+            }
+            else {
+                res.json({error: body});
+            }
+        }
+    );
+  }
+
+  function createdByMeIssues(req, res) {
+    if (isApiKeyMissing(req, res)) {
+        return;
+    }
+    request({
+            url: config.redmineRoot + 'issues.json?key=' + req.query.key+'&limit=100&offset=0&author_id=me',
+            json: true
+        },
+        function (error, response, body) {
+            if (!error && response.statusCode === 200) {
+                //makeCustomFields(body);
+                res.json(body);
+            }
+            else {
+                res.json({error: body});
+            }
+        }
+    );
+  }
+
   function teamIssues (req, res) {
       if (isApiKeyMissing(req, res)) {
           return;
       }
       request({
-              url: config.redmineRoot + 'issues.json?key=' + req.query.key,
+              url: config.redmineRoot + 'issues.json?key=' + req.query.key+'&limit=100&offset=0',
               json: true
           },
           function (error, response, body) {
@@ -76,7 +117,9 @@ module.exports = (function (){
 
   //this is what we expose to queries
   var queries = {
-    teamIssues: teamIssues
+    teamIssues: teamIssues,
+    assigendToMeIssues: assigendToMeIssues,
+    createdByMeIssues: createdByMeIssues
   }
 
   //thats redmineProxy object
