@@ -45,7 +45,7 @@ module.exports = (function (){
     });
   }
 
-  #TODO add more filter options on the queries
+  //TODO add more filter options on the queries
   //Query functions
   function assigendToMeIssues(req, res) {
     if (isApiKeyMissing(req, res)) {
