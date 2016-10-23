@@ -26,9 +26,9 @@ exports.KanbanConfig = {
     filter:
       showTeamFilter: false
     columns: [
-      {columnClass: 'first-column', columnTitle: 'Backlog', statuses: ['Groomed', 'Committed ']},
-      {columnTitle: 'In Progress...', statuses: ['In Progress']},
-      {columnClass: 'last-column', columnTitle: 'Resolved', statuses: ['Resolved']}
+      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'Backlog', statuses: ['Groomed', 'Committed ']},
+      {color: '#6c6cf5', columnTitle: 'In Progress...', statuses: ['In Progress']},
+      {color: '#8ac383', columnClass: 'last-column', columnTitle: 'Resolved', statuses: ['Resolved']}
     ]
   navigationItems: [
     {path: 'team', template: '<i class="fa fa-users" aria-hidden="true"></i>team'},
