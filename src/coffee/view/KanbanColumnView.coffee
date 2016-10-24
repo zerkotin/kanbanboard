@@ -13,6 +13,8 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
   statuses: null
   color: null
 
+  ticketViews: []
+
   initialize: (options) ->
     {@columnClass, @columnTitle, @statuses, @ticketCollection, @size, @color} = options
     @listenTo @ticketCollection, 'sync', @_renderTickets
@@ -33,9 +35,16 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
     for ticket in @ticketCollection.models
       if ticket.get('status').name in @statuses
         view = new TicketView(ticketData: ticket)
+        @ticketViews.push(view)
         $ticketsEl.append view.el
 
     return @
+
+  remove: ->
+    for view in @ticketViews
+      view.remove();
+
+    super arguments...
 
 template = (columnTitle) ->
   """

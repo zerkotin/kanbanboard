@@ -13,6 +13,10 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
   ticketCollection: null
 
+  columnViews: []
+  sideNavigationView: null
+  filterView: null
+
   initialize: (options) ->
     {@config} = options
     @ticketCollection = new TicketCollection()
@@ -22,11 +26,11 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
   render: ->
 
-    sideNavigationView = new SideNavigationView(navigationItems: KanbanConfig.navigationItems)
-    filterView = new KanbanFilterView(ticketCollection: @ticketCollection, filterConfig: @config.filter)
+    @sideNavigationView = new SideNavigationView(navigationItems: KanbanConfig.navigationItems)
+    @filterView = new KanbanFilterView(ticketCollection: @ticketCollection, filterConfig: @config.filter)
 
-    @$el.append sideNavigationView.el
-    @$el.append filterView.el
+    @$el.append @sideNavigationView.el
+    @$el.append @filterView.el
     @$el.append wrapperTemplate()
 
     $wrapper = @$('.kanban-columns-wrapper')
@@ -36,9 +40,19 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
       columnConfig.size = Math.floor(100 / @config.columns.length)
 
       view = new KanbanColumnView(columnConfig)
+      @columnViews.push(view)
       $wrapper.append(view.el)
 
     return $wrapper #not a must
+
+  remove: ->
+    for column in @columnViews
+      column.remove();
+
+    @sideNavigationView.remove();
+    @filterView.remove();
+
+    super arguments...
 
 
 wrapperTemplate = ->

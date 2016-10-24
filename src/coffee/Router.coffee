@@ -6,7 +6,7 @@ exports.Router = class Router extends Backbone.Router
   currentView: null
 
   routes:
-    '': 'team'
+    '': 'developer'
     'team': 'team'
     'po': 'po'
     'developer': 'developer'
