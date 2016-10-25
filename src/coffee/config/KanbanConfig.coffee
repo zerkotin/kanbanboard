@@ -5,7 +5,7 @@ exports.KanbanConfig = {
     filter:
       showTeamFilter: true
     columns: [
-      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued', 'Groomed', 'Committed ']},
+      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued', 'Groomed', 'Committed']},
       {color: '#6c6cf5', columnTitle: 'In Progress...', statuses: ['In Progress']},
       {color: '#8ac383', columnClass: 'last-column', columnTitle: 'DONE', statuses: ['Resolved', 'Feedback', 'Closed', 'Rejected']}
     ]
@@ -14,7 +14,7 @@ exports.KanbanConfig = {
     filter:
       showTeamFilter: false
     columns: [
-      {columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued', 'Groomed', 'Committed ']},
+      {columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued', 'Groomed', 'Committed']},
       {columnTitle: 'In Progress...', statuses: ['In Progress']},
       {columnTitle: 'Resolved', statuses: ['Resolved']},
       {columnTitle: 'Feedback', statuses: ['Feedback']},
@@ -26,7 +26,7 @@ exports.KanbanConfig = {
     filter:
       showTeamFilter: false
     columns: [
-      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'Backlog', statuses: ['Groomed', 'Committed ']},
+      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'Backlog', statuses: ['Groomed', 'Committed']},
       {color: '#6c6cf5', columnTitle: 'In Progress...', statuses: ['In Progress']},
       {color: '#8ac383', columnClass: 'last-column', columnTitle: 'Resolved', statuses: ['Resolved']}
     ]
