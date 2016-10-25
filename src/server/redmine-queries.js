@@ -18,6 +18,17 @@ module.exports = (function () {
         redmine.query(req, res, params);
     }
 
+    function specificIssues(req, res) {
+        var params = {
+            key: req.query.key,
+            limit: 100,
+            offset: 0,
+            set_filter: 1,
+            sort:'priority:desc,updated_on:desc'
+        };
+        redmine.query(req, res, params);
+    }
+
     function poIssues(req, res) {
         var params = {
             key: req.query.key,
@@ -45,7 +56,8 @@ module.exports = (function () {
     return queries = {
         teamIssues: teamIssues,
         developerIssues: developerIssues,
-        poIssues: poIssues
+        poIssues: poIssues,
+        specificIssues: specificIssues
     };
 
 })();

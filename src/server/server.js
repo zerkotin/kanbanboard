@@ -13,10 +13,11 @@ function mapRedmineQueries() {
   app.get('/teamissues', queries.teamIssues);
   app.get('/developerissues', queries.developerIssues);
   app.get('/poissues', queries.poIssues);
+  app.get('/specificissues', queries.specificIssues);
+
 }
 
 function configSimpleWebServer() {
-
   //handles get to localhost
   app.get('/', function(req, res) {
      res.sendFile(__dirname + '/index.html')
