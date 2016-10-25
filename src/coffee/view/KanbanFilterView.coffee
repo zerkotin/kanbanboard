@@ -41,8 +41,8 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
     @_saveToLocalStorage(params)
 
   _saveToLocalStorage: (params) ->
-    for param in params
-      localStorage.setItem(param, params[param])
+    for key of params
+      localStorage.setItem(key, params[key])
     return @
 
   _loadFromLocalStorage: ->

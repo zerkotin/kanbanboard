@@ -15,18 +15,15 @@ module.exports = (function () {
             set_filter: 1,
             sort:'priority:desc,updated_on:desc'
         };
-        redmine.query(req, res, params);
+        redmine.query(req, res, params, null, 'issues.json');
     }
 
     function specificIssues(req, res) {
         var params = {
-            key: req.query.key,
-            limit: 100,
-            offset: 0,
-            set_filter: 1,
-            sort:'priority:desc,updated_on:desc'
+            key: req.query.key
         };
-        redmine.query(req, res, params);
+        var tickets = req.query.tickets.split(',');
+        redmine.multipleIssuesQuery(req, res, params, null, tickets);
     }
 
     function poIssues(req, res) {
@@ -36,7 +33,7 @@ module.exports = (function () {
             offset: 0,
             author_id: 'me'
         };
-        redmine.query(req, res, params);
+        redmine.query(req, res, params, null, 'issues.json');
     }
 
     function teamIssues(req, res) {
@@ -49,7 +46,7 @@ module.exports = (function () {
             cf_Team: req.query.team,
             cf_Sprint: req.query.sprint
         };
-        redmine.query(req, res, remoteFilters, localFilters);
+        redmine.query(req, res, remoteFilters, localFilters, 'issues.json');
     }
 
     //this is what we expose to queries
