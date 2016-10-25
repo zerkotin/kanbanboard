@@ -50,6 +50,7 @@ module.exports = (function (){
       var url = null;
       if(req.query && req.query.key) {
           url = buildUrl(remoteFilters);
+          console.log('url: '+url);
           request({url: url, json: true}, function(error, response, data){
               if (!error && response.statusCode === 200) {
                   removeEmptyFilters(localFilters);

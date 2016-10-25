@@ -8,17 +8,17 @@ exports.KanbanConfig = {
       {text: 'Sprint', name: 'sprint', type: 'text', description: 'Sprint number'}
     ]
     columns: [
-      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued', 'Groomed', 'Committed']},
+      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']},
       {color: '#6c6cf5', columnTitle: 'In Progress...', statuses: ['In Progress']},
       {color: '#8ac383', columnClass: 'last-column', columnTitle: 'DONE', statuses: ['Resolved', 'Feedback', 'Closed', 'Rejected']}
     ]
   poViewConfig:
-    url: '/createdbymeissues'
+    url: '/poissues'
     filters: [
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
     ]
     columns: [
-      {columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued', 'Groomed', 'Committed']},
+      {columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']},
       {columnTitle: 'In Progress...', statuses: ['In Progress']},
       {columnTitle: 'Resolved', statuses: ['Resolved']},
       {columnTitle: 'Feedback', statuses: ['Feedback']},
@@ -26,12 +26,12 @@ exports.KanbanConfig = {
       {columnClass: 'last-column', columnTitle: 'Rejected', statuses: ['Rejected']}
     ]
   developerViewConfig:
-    url: '/assignedtomeissues'
+    url: '/developerissues'
     filters: [
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
     ]
     columns: [
-      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'Backlog', statuses: ['New', 'Queued', 'Groomed', 'Committed']},
+      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']},
       {color: '#6c6cf5', columnTitle: 'In Progress...', statuses: ['In Progress']},
       {color: '#8ac383', columnClass: 'last-column', columnTitle: 'Resolved', statuses: ['Resolved']}
     ]
