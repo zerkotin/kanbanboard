@@ -1,5 +1,5 @@
 /node_modules
 /.idea
 /_temp
-/app
 /bower_components
+/build
