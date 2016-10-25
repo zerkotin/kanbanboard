@@ -1,6 +1,6 @@
 //thats our server, it includes a simple file handler and proxy to our redmine queries
 var express = require('express');
-var redmine = require('./redmine-proxy.js');
+var queries = require('./redmine-queries.js');
 
 var app = express();
 
@@ -10,9 +10,9 @@ configSimpleWebServer(); //should be called last
 
 
 function mapRedmineQueries() {
-  app.get('/teamissues', redmine.queries.teamIssues);
-  app.get('/assignedtomeissues', redmine.queries.assigendToMeIssues);
-  app.get('/createdbymeissues', redmine.queries.createdByMeIssues);
+  app.get('/teamissues', queries.teamIssues);
+  app.get('/assignedtomeissues', queries.assigendToMeIssues);
+  app.get('/createdbymeissues', queries.createdByMeIssues);
 }
 
 function configSimpleWebServer() {

@@ -3,129 +3,78 @@ var request = require('request');
 
 module.exports = (function (){
 
-  //Config constants
-  var config = {redmineRoot: 'http://project.osthus.com/'};
+    //TODO handle paging
 
-  //API functions
-  function isApiKeyMissing(req, res) {
-    if (!req.query || !req.query.key) {
-      res.json({error: 'ApiKey missing. Please provide "key" paramter.'});
-      return true;
+    //Config constants
+    var config = {redmineRoot: 'http://project.osthus.com/'};
+
+    //API functions
+    function removeEmptyFilters(filters){
+        for(var prop in filters) {
+            if(!filters[prop] || filters[prop].trim() =='') {
+                delete filters[prop];
+            }
+        }
     }
-  }
 
-  function issueHasTeam(customs, team) {
-    var result = false;
-    customs.forEach(function (c, i, a) {
-      if (c.name == 'Team' && c.value == team) {
-        result = true;
-      }
-    });
-
-    return result;
-  }
-
-  function filterIssuesByTeam(data, team) {
-    var result = {issues: []};
-    result.issues = data.issues.filter(function (c, i, a) {
-      return c.custom_fields && issueHasTeam(c.custom_fields, team);
-    });
-
-    return result;
-  }
-
-  function makeCustomFields(data) {
-    data.issues.forEach(function (c, i, a) {
-      //TODO continue here
-      if (c.custom_fields) {
-        c.custom_fields.forEach(function (c, i, a) {
-          c["custom_" + c.id] = c.value;
+    function filterIssues(issues, filters) {
+        var filteredIssues = issues.filter(function(issue){
+            for(var prop in filters) {
+                if(issue[prop] != filters[prop])
+                    return false;
+            }
+            return true;
         });
-      }
-    });
-  }
-
-  //TODO add more filter options on the queries
-  //Query functions
-  function assigendToMeIssues(req, res) {
-    if (isApiKeyMissing(req, res)) {
-        return;
+        return filteredIssues;
     }
-    request({
-            url: config.redmineRoot + 'issues.json?key=' + req.query.key+'&limit=100&offset=0&assigned_to_id=me',
-            json: true
-        },
-        function (error, response, body) {
-            if (!error && response.statusCode === 200) {
-                //makeCustomFields(body);
-                res.json(body);
-            }
-            else {
-                res.json({error: body});
-            }
-        }
-    );
-  }
 
-  function createdByMeIssues(req, res) {
-    if (isApiKeyMissing(req, res)) {
-        return;
+    function mapCustomFields(issues) {
+        issues.forEach(function (issue) {
+            if (issue.custom_fields) {
+                issue.custom_fields.forEach(function (field) {
+                    issue['cf_' + field.name] = field.value;
+                });
+            }
+        });
     }
-    request({
-            url: config.redmineRoot + 'issues.json?key=' + req.query.key+'&limit=100&offset=0&author_id=me',
-            json: true
-        },
-        function (error, response, body) {
-            if (!error && response.statusCode === 200) {
-                //makeCustomFields(body);
-                res.json(body);
-            }
-            else {
-                res.json({error: body});
-            }
-        }
-    );
-  }
 
-  function teamIssues (req, res) {
-      if (isApiKeyMissing(req, res)) {
-          return;
-      }
-      request({
-              url: config.redmineRoot + 'issues.json?key=' + req.query.key+'&limit=100&offset=0',
-              json: true
-          },
-          function (error, response, body) {
+    function buildUrl(parameters) {
+        var url = config.redmineRoot + 'issues.json?';
+        for(var prop in parameters) {
+            url += prop+'='+parameters[prop]+'&';
+        }
+        return url.substring(0, url.length - 1); //removing the last character
+    }
+
+    function redmineQuery(req, res, remoteFilters, localFilters) {
+      var url = null;
+      if(req.query && req.query.key) {
+          url = buildUrl(remoteFilters);
+          request({url: url, json: true}, function(error, response, data){
               if (!error && response.statusCode === 200) {
-                  makeCustomFields(body);
-                  res.json(filterIssuesByTeam(body, req.query.team));
+                  removeEmptyFilters(localFilters);
+                  if(localFilters) {
+                      mapCustomFields(data.issues);
+                      data.issues = filterIssues(data.issues, localFilters);
+                      res.json(data);
+                  }
+                  else {
+                      res.json(data);
+                  }
               }
               else {
-                  res.json({error: body});
+                  res.json({error: data || error});
               }
-          }
-      );
-  }
+          });
+      }
+      else {
+          res.json({error: 'API key is missing'});
+      }
+    }
 
-  //this is what we expose to the API
-  var api = {
-    isApiKeyMissing: isApiKeyMissing,
-    issueHasTeam: issueHasTeam,
-    filterIssuesByTeam: filterIssuesByTeam,
-    makeCustomFields: makeCustomFields
-  }
+    return {
+        config: config,
+        query: redmineQuery
+    };
 
-  //this is what we expose to queries
-  var queries = {
-    teamIssues: teamIssues,
-    assigendToMeIssues: assigendToMeIssues,
-    createdByMeIssues: createdByMeIssues
-  }
-
-  //thats redmineProxy object
-  return {
-    config: config,
-    queries: queries,
-    api: api
-  };
 })();

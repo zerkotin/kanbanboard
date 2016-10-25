@@ -27,7 +27,7 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
   render: ->
 
     @sideNavigationView = new SideNavigationView(navigationItems: KanbanConfig.navigationItems)
-    @filterView = new KanbanFilterView(ticketCollection: @ticketCollection, filterConfig: @config.filter)
+    @filterView = new KanbanFilterView(ticketCollection: @ticketCollection, filters: @config.filters)
 
     @$el.append @sideNavigationView.el
     @$el.append @filterView.el

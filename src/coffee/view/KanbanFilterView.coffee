@@ -2,6 +2,9 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
 
   className: 'kanban-filter-view'
 
+  filters: null
+  $filters: []
+
   $team: null
   $key: null
 
@@ -11,53 +14,54 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
     'click .kanban-button': '_onFilterClick'
 
   initialize: (options) ->
-    {@ticketCollection, @filterConfig} = options
+    {@ticketCollection, @filters} = options
 
     @listenTo @ticketCollection, 'sync', @_stopSpinner
     @render()
 
   render: ->
-    @$el.append template()
+    for filter in @filters
+      @$el.append filterTemplate(filter)
 
-    @$team = @$('.team-input')
-    @$key = @$('.key-input')
-
-    unless @filterConfig.showTeamFilter #hide team filter if unnecesary
-      @$('.team').hide()
+    @$el.append filterButtonTemplate()
 
     @_loadFromLocalStorage()
 
   _onFilterClick: ->
 
-    team = @$team.val()
-    key = @$key.val()
+    params = {}
+    for filter in @filters
+      params[filter.name] = @$(".#{filter.name}-input").val()
 
     @$('.fa-spinner').removeClass 'hidden'
 
     #fetch from the server om click
-    @ticketCollection.fetch(data:{team: team, key: key})
+    @ticketCollection.fetch(data: params)
 
-    @_saveToLocalStorage(key, team)
+    @_saveToLocalStorage(params)
 
-  _saveToLocalStorage: (key, team) ->
-    localStorage.setItem('key', key)
-    localStorage.setItem('team', team)
+  _saveToLocalStorage: (params) ->
+    for param in params
+      localStorage.setItem(param, params[param])
+    return @
 
   _loadFromLocalStorage: ->
-    team = localStorage.getItem('team')
-    key = localStorage.getItem('key')
+    for filter in @filters
+      val = localStorage.getItem(filter.name)
+      @$(".#{filter.name}-input").val(val)
 
-    @$team.val(team)
-    @$key.val(key)
+    return @
 
   _stopSpinner: ->
     @$('.fa-spinner').addClass 'hidden'
 
 
-template = ->
+filterTemplate = (filter) ->
   """
-  <span class="kanban-label key-label">Key:</span><input placeholder="paste your redmine api key" class="kanban-input key-input" type="password"></input>
-  <span class="kanban-label team-label team">Team:</span><input class="kanban-input team-input team" type="text"></input>
+  <span class="kanban-label #{filter.name}-label">#{filter.text}:</span><input placeholder="#{filter.description}" class="kanban-input #{filter.name}-input" type="#{filter.type}"></input>
+  """
+filterButtonTemplate = ->
+  """
   <span class="kanban-button filter-button">Filter</span>
   <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
   """
