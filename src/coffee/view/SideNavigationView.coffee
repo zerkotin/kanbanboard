@@ -3,6 +3,7 @@ exports.SideNavigationView = class SideNavigationView extends Backbone.View
   className: 'side-navigation-view'
 
   navigationItems: null
+  animating: false
 
   events:
     'click .navigation-item': '_onNavigate'
@@ -18,18 +19,22 @@ exports.SideNavigationView = class SideNavigationView extends Backbone.View
       @$el.append itemTemplate(item)
 
     #TODO fix this hack
-    setTimeout(@_onMouseOut.bind(@), 1000)
+    setTimeout(@_onMouseOut, 1000)
 
   _onNavigate: (event) ->
     navigationPath = event.target.id
     Backbone.history.navigate(navigationPath, {trigger: true})
 
   _onMouseOver: ->
-    @$el.animate({left: '-3px'})
+    return if @animating
+    @animating = true
+    @$el.animate({left: '-3px'}, 500, 'swing', => @animating = false)
 
-  _onMouseOut: ->
+  _onMouseOut: =>
+    return if @animating
+    @animating = true
     move = @$el.width() - 20
-    @$el.animate({left: "-#{move}px"})
+    @$el.animate({left: "-#{move}px"}, 500, 'swing', => @animating = false)
 
 itemTemplate = (config) ->
   """
