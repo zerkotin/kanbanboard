@@ -11,11 +11,9 @@ module.exports = (function () {
             limit: 100,
             offset: 0,
             assigned_to_id: 'me',
-            //status_id: '1,7,8,9,2,3',
-            set_filter: 1,
             sort:'priority:desc,updated_on:desc'
         };
-        redmine.query(req, res, params, null, 'issues.json');
+        redmine.query(req, res, params);
     }
 
     function specificIssues(req, res) {
@@ -23,7 +21,7 @@ module.exports = (function () {
             key: req.query.key
         };
         var tickets = req.query.tickets.split(',');
-        redmine.multipleIssuesQuery(req, res, params, null, tickets);
+        redmine.multipleQueries(req, res, params, null, tickets);
     }
 
     function poIssues(req, res) {
@@ -31,22 +29,24 @@ module.exports = (function () {
             key: req.query.key,
             limit: 100,
             offset: 0,
-            author_id: 'me'
+            author_id: 'me',
+            sort:'priority:desc,updated_on:desc'
         };
-        redmine.query(req, res, params, null, 'issues.json');
+        redmine.query(req, res, params);
     }
 
     function teamIssues(req, res) {
         var remoteFilters = {
             key: req.query.key,
             limit: 100,
-            offset: 0
+            offset: 0,
+            sort:'priority:desc,updated_on:desc'
         };
         var localFilters = {
             cf_Team: req.query.team,
             cf_Sprint: req.query.sprint
         };
-        redmine.query(req, res, remoteFilters, localFilters, 'issues.json');
+        redmine.query(req, res, remoteFilters, localFilters);
     }
 
     //this is what we expose to queries

@@ -18,12 +18,11 @@ exports.KanbanConfig = {
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
     ]
     columns: [
-      {columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
-      {columnTitle: 'In Progress...', statuses: ['In Progress']}
-      {columnTitle: 'Resolved', statuses: ['Resolved']}
-      {columnTitle: 'Feedback', statuses: ['Feedback']}
+      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
+      {color: '#6c6cf5', columnTitle: 'In Progress...', statuses: ['In Progress']}
+      {color: '#8ac383', columnTitle: 'Resolved', statuses: ['Resolved']}
       {columnTitle: 'Closed', statuses: ['Closed']}
-      {columnClass: 'last-column', columnTitle: 'Rejected', statuses: ['Rejected']}
+      {color: 'orange', columnClass: 'last-column', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
     ]
   developerViewConfig:
     url: '/developerissues'
@@ -42,11 +41,11 @@ exports.KanbanConfig = {
       {text: 'Tickets', name: 'tickets', type: 'text', description: 'Comma separated tickets'}
     ]
     columns: [
-      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
+      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
       {color: '#6c6cf5', columnTitle: 'In Progress...', statuses: ['In Progress']}
       {color: '#8ac383', columnTitle: 'Resolved', statuses: ['Resolved']}
       {columnTitle: 'Closed', statuses: ['Closed']}
-      {color: 'orange', columnClass: 'last-column', columnTitle: 'Out', statuses: ['Feedback', 'Rejected']}
+      {color: 'orange', columnClass: 'last-column', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
     ]
 
   navigationItems: [

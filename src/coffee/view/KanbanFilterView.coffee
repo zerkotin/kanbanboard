@@ -62,6 +62,6 @@ filterTemplate = (filter) ->
   """
 filterButtonTemplate = ->
   """
-  <span class="kanban-button filter-button">Filter</span>
+  <span class="kanban-button filter-button">Load</span>
   <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
   """
