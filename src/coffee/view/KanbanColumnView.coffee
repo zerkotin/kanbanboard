@@ -1,6 +1,5 @@
 {TicketView} = require './TicketView'
 
-#TODO add pagination
 exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
 
   className: 'kanban-column'

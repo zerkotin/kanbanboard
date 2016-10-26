@@ -3,8 +3,6 @@ var request = require('request');
 
 module.exports = (function (){
 
-    //TODO handle paging
-
     //Config constants
     var config = {redmineRoot: 'http://project.osthus.com/'};
 
