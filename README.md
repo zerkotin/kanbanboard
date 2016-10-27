@@ -25,7 +25,8 @@ afterwards, building the project consists of running ```grunt``` or ```grunt dis
 dont forget to delete ```build``` and ```_temp``` directories before building a distribution version.
 
 
-to run the project go to ```build``` directory and run ```npm start```
+to run the project go to ```build``` directory and run ```npm install``` and then ```npm start```
+
 
 then go to localhost:9090 in your browser.
 
