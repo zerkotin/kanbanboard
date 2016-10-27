@@ -12,17 +12,21 @@ exports.SideNavigationView = class SideNavigationView extends Backbone.View
 
   initialize: (options) ->
     {@navigationItems} = options
-    @render()
+    @render(options.initSelectedPath)
 
-  render: ->
+  render: (initSelectedPath) ->
     for item in @navigationItems
       @$el.append itemTemplate(item)
+
+    @$('#'+initSelectedPath).addClass 'selected' # selecting the item after refresh screen
 
     #TODO fix this hack
     setTimeout(@_onMouseOut, 1000)
 
   _onNavigate: (event) ->
     navigationPath = event.target.id
+    @$('.navigation-item').removeClass 'selected'
+    @$('#'+navigationPath).addClass 'selected'
     Backbone.history.navigate(navigationPath, {trigger: true})
 
   _onMouseOver: ->

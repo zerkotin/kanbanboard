@@ -6,6 +6,7 @@ exports.TicketView = class TicketView extends Backbone.View
   className: 'ticket-view'
 
   ticketData: null
+  ticketConfig: null
 
   shouldShowDescription: false
 
@@ -14,11 +15,11 @@ exports.TicketView = class TicketView extends Backbone.View
     'click .ticket-title': '_onTitleClick'
 
   initialize: (options) ->
-    {@ticketData} = options
+    {@ticketData, @ticketConfig} = options
     @render()
 
   render: ->
-    @$el.append(template(@ticketData))
+    @$el.append(template(@ticketData, @ticketConfig))
 
   _onTicketClick: ->
     window.open(KanbanConfig.redmineIssuesUrl + @ticketData.get('id'))
@@ -34,7 +35,7 @@ exports.TicketView = class TicketView extends Backbone.View
       @$('.ticket-header').removeClass 'expanded'
 
 
-template = (data) ->
+template = (data, config) ->
   """
   <div class="ticket-header">
     <span class="ticket-id">#{data.get('id')}</span>
@@ -42,7 +43,7 @@ template = (data) ->
   </div>
   <div class="ticket-description" style="display: none">#{data.get('description')}</div>
   <div class="ticket-footer">
-    <span class="ticket-owner">#{data.get('author').name}</span>
+    <span class="ticket-owner">#{if data.get(config.nameField) then data.get(config.nameField).name else '---'}</span>
     <span class="ticket-status">#{data.get('status').name}</span>
   </div>
 

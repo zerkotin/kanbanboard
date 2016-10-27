@@ -1,6 +1,8 @@
 exports.KanbanConfig = {
   redmineIssuesUrl: 'https://project.osthus.com/issues/',
   teamViewConfig:
+    path: 'team'
+    title: 'Team'
     url: '/teamissues'
     filters: [
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
@@ -8,11 +10,17 @@ exports.KanbanConfig = {
       {text: 'Sprint', name: 'sprint', type: 'text', description: 'Sprint number'}
     ]
     columns: [
-      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'TODO', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
+      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
       {color: '#6c6cf5', columnTitle: 'In Progress...', statuses: ['In Progress']}
-      {color: '#8ac383', columnClass: 'last-column', columnTitle: 'DONE', statuses: ['Resolved', 'Feedback', 'Closed', 'Rejected']}
+      {color: '#8ac383', columnTitle: 'Resolved', statuses: ['Resolved']}
+      {color: 'orange', columnClass: 'last-column', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
     ]
+    ticketConfig:
+      nameField: 'assigned_to'
+
   poViewConfig:
+    path: 'po'
+    title: 'PO'
     url: '/poissues'
     filters: [
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
@@ -21,10 +29,14 @@ exports.KanbanConfig = {
       {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
       {color: '#6c6cf5', columnTitle: 'In Progress...', statuses: ['In Progress']}
       {color: '#8ac383', columnTitle: 'Resolved', statuses: ['Resolved']}
-      {columnTitle: 'Closed', statuses: ['Closed']}
       {color: 'orange', columnClass: 'last-column', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
     ]
+    ticketConfig:
+      nameField: 'assigned_to'
+
   developerViewConfig:
+    path: 'developer'
+    title: 'Developer'
     url: '/developerissues'
     filters: [
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
@@ -34,7 +46,12 @@ exports.KanbanConfig = {
       {color: '#6c6cf5', columnTitle: 'In Progress...', statuses: ['In Progress']}
       {color: '#8ac383', columnClass: 'last-column', columnTitle: 'Resolved', statuses: ['Resolved']}
     ]
+    ticketConfig:
+      nameField: 'author'
+
   ticketViewConfig:
+    path: 'tickets'
+    title: 'Tickets'
     url: '/specificissues'
     filters: [
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
@@ -47,6 +64,8 @@ exports.KanbanConfig = {
       {columnTitle: 'Closed', statuses: ['Closed']}
       {color: 'orange', columnClass: 'last-column', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
     ]
+    ticketConfig:
+      nameField: 'author'
 
   navigationItems: [
     {path: 'team', template: '<i class="fa fa-users" aria-hidden="true"></i>Team'}
