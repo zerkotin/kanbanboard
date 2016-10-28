@@ -18,7 +18,7 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
     @render()
 
   render: ->
-    size = 100 / @config.columns.length
+    size = 100 / @viewState.get('columns').length
     @$el.css('width', size + '%')
     @$el.addClass @columnConfig.columnClass if @columnConfig.columnClass
 
@@ -30,7 +30,7 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
     $ticketsEl = @$('.kanban-column-content')
     $ticketsEl.empty()
 
-    for ticket in @ticketCollection.columnConfigs
+    for ticket in @ticketCollection.models
       if ticket.get('status').name in @columnConfig.statuses
         view = new TicketView(ticketConfig: @config.ticketConfig, model: ticket)
         @ticketViews.push(view)
@@ -39,11 +39,13 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
     return @
 
   _columnsChanged: ->
-    #TODO recalculate size
     if @columnConfig.name in @viewState.get('columns')
       @$el.show()
     else
       @$el.hide()
+
+    size = 100 / @viewState.get('columns').length
+    @$el.css('width', size + '%')
 
   remove: ->
     for view in @ticketViews
