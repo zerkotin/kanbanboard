@@ -33,7 +33,7 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
     @$el.append @filterView.el
     @$el.append @columnFilterView.el
-    @$el.append wrapperTemplate()
+    @$el.append wrapperTemplate(@config.title)
 
     $wrapper = @$('.kanban-columns-wrapper')
 
@@ -60,7 +60,8 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
     super arguments...
 
-wrapperTemplate = ->
+wrapperTemplate = (boardName)->
   """
+  <div class='kanban-board-title'>##{boardName}</div>
   <div class='kanban-columns-wrapper'></div>
   """
