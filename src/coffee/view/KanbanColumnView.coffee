@@ -10,9 +10,6 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
   viewState: null
   ticketViews: []
 
-  events:
-    'click .kanban-column-title': '_onTitleClick'
-
   initialize: (options) ->
     {@columnConfig, @ticketCollection, @config, @viewState} = options
     @listenTo @ticketCollection, 'sync', @_renderTickets
@@ -41,10 +38,8 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
 
     return @
 
-  _onTitleClick: ->
-    @viewState.set('columns', @config.columns.filter((column) -> return column.name isnt @columnConfig.name))
-
   _columnsChanged: ->
+    #TODO recalculate size
     if @columnConfig.name in @viewState.get('columns')
       @$el.show()
     else

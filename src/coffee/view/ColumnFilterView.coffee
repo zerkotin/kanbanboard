@@ -25,12 +25,11 @@ exports.ColumnFilterView = class ColumnFilterView extends Backbone.View
     selectedFilter = @$('#'+event.target.id)
     if selectedFilter.hasClass 'selected'
       selectedFilter.removeClass 'selected'
-      @viewState.set('columns', @viewState.get('columns').filter((column) -> return column.name isnt event.target.id))
+      @viewState.set('columns', @viewState.get('columns').filter((column) => return column isnt event.target.id))
     else
       selectedFilter.addClass 'selected'
       columns = @viewState.get('columns')
-      columns.push event.target.id
-      @viewState.set('columns', columns)
+      @viewState.set('columns', columns.concat [event.target.id])
 
   _onMouseOver: ->
     return if @animating
@@ -45,5 +44,5 @@ exports.ColumnFilterView = class ColumnFilterView extends Backbone.View
 
 itemTemplate = (config) ->
   """
-  <div id="#{config.name}" class="filter-item">#{config.columnTitle}</div>
+  <div id="#{config.name}" class="filter-item selected">#{config.columnTitle}</div>
   """
