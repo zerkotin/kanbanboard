@@ -4,16 +4,19 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
 
   className: 'kanban-column'
 
-
-  ticketCollection: null
   columnConfig: null
+  ticketCollection: null
   config: null
-
+  viewState: null
   ticketViews: []
 
+  events:
+    'click .kanban-column-title': '_onTitleClick'
+
   initialize: (options) ->
-    {@columnConfig, @ticketCollection, @config} = options
+    {@columnConfig, @ticketCollection, @config, @viewState} = options
     @listenTo @ticketCollection, 'sync', @_renderTickets
+    @listenTo @viewState, 'change:columns', @_columnsChanged
 
     @render()
 
@@ -30,13 +33,22 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
     $ticketsEl = @$('.kanban-column-content')
     $ticketsEl.empty()
 
-    for ticket in @ticketCollection.models
+    for ticket in @ticketCollection.columnConfigs
       if ticket.get('status').name in @columnConfig.statuses
         view = new TicketView(ticketConfig: @config.ticketConfig, model: ticket)
         @ticketViews.push(view)
         $ticketsEl.append view.el
 
     return @
+
+  _onTitleClick: ->
+    @viewState.set('columns', @config.columns.filter((column) -> return column.name isnt @columnConfig.name))
+
+  _columnsChanged: ->
+    if @columnConfig.name in @viewState.get('columns')
+      @$el.show()
+    else
+      @$el.hide()
 
   remove: ->
     for view in @ticketViews

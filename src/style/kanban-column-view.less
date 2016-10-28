@@ -10,6 +10,32 @@
     color: white;
     height: 20px;
     width: 100%;
+    cursor: pointer;
+
+    &:hover {
+      color: @light-blue;
+    }
+
+    &:active {
+      color: lightgrey;
+    }
+
+    &:after {
+      content: '-';
+      position: absolute;
+      display: inline-block;
+      right: 15px;
+      top: 0;
+      color: grey;
+      font-weight: bold;
+      //cursor: pointer;
+    }
+
+    &.expanded {
+      &:after {
+        content: '+';
+      }
+    }
   }
 
   .kanban-column-content {

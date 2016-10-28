@@ -2,6 +2,7 @@
 {KanbanFilterView} = require './KanbanFilterView'
 {KanbanConfig} = require '../config/KanbanConfig'
 {TicketCollection} = require '../model/TicketCollection'
+{ColumnFilterView} = require './ColumnFilterView'
 
 #TODO add drag and drop and sync the collection
 exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
@@ -14,19 +15,24 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
   columnViews: []
   filterView: null
+  columnFilterView: null
+  viewState: null
 
   initialize: (options) ->
     {@config} = options
+    @viewState = new Backbone.Model
+    @viewState.set('columns', @config.columns.map((column) -> return column.name))
     @ticketCollection = new TicketCollection(null, {url: @config.issuesUrl})
-    #@ticketCollection.url = @config.issuesUrl #running over the url for different screens
 
     @render()
 
   render: ->
 
     @filterView = new KanbanFilterView(ticketCollection: @ticketCollection, filters: @config.filters)
+    @columnFilterView = new ColumnFilterView(config: @config, viewState: @viewState)
 
     @$el.append @filterView.el
+    @$el.append @columnFilterView.el
     @$el.append wrapperTemplate()
 
     $wrapper = @$('.kanban-columns-wrapper')
@@ -34,6 +40,7 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
     for columnConfig in @config.columns
       kanbanColumnConfig = {
         columnConfig: columnConfig
+        viewState: @viewState
         ticketCollection: @ticketCollection
         config: @config
       }
@@ -49,9 +56,9 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
       column.remove();
 
     @filterView.remove();
+    @columnFilterView.remove()
 
     super arguments...
-
 
 wrapperTemplate = ->
   """

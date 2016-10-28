@@ -10,10 +10,10 @@ exports.KanbanConfig = {
       {text: 'Sprint', name: 'sprint', type: 'text', description: 'Sprint number'}
     ]
     columns: [
-      {color: '#f37f7f', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
-      {color: '#75a7f1', columnTitle: 'In Progress...', statuses: ['In Progress']}
-      {color: '#8ac383', columnTitle: 'Resolved', statuses: ['Resolved']}
-      {color: 'orange', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
+      {color: '#f37f7f', name: 'backlog', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
+      {color: '#75a7f1', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
+      {color: '#8ac383', name: 'resolved' ,columnTitle: 'Resolved', statuses: ['Resolved']}
+      {color: 'orange', name: 'other', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
     ]
     ticketConfig:
       nameField: 'assigned_to'
@@ -26,10 +26,10 @@ exports.KanbanConfig = {
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
     ]
     columns: [
-      {color: '#f37f7f', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
-      {color: '#75a7f1', columnTitle: 'In Progress...', statuses: ['In Progress']}
-      {color: '#8ac383', columnTitle: 'Resolved', statuses: ['Resolved']}
-      {color: 'orange', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
+      {color: '#f37f7f', name: 'backlog', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
+      {color: '#75a7f1', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
+      {color: '#8ac383', name: 'resolved', columnTitle: 'Resolved', statuses: ['Resolved']}
+      {color: 'orange', name: 'other', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
     ]
     ticketConfig:
       nameField: 'assigned_to'
@@ -42,9 +42,9 @@ exports.KanbanConfig = {
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
     ]
     columns: [
-      {color: '#f37f7f', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
-      {color: '#75a7f1', columnTitle: 'In Progress...', statuses: ['In Progress']}
-      {color: '#8ac383', columnTitle: 'Resolved', statuses: ['Resolved']}
+      {color: '#f37f7f', name: 'backlog', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
+      {color: '#75a7f1', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
+      {color: '#8ac383', name: 'resolved', columnTitle: 'Resolved', statuses: ['Resolved']}
     ]
     ticketConfig:
       nameField: 'author'
@@ -58,11 +58,11 @@ exports.KanbanConfig = {
       {text: 'Tickets', name: 'tickets', type: 'text', description: 'Comma separated tickets'}
     ]
     columns: [
-      {color: '#f37f7f', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
-      {color: '#75a7f1', columnTitle: 'In Progress...', statuses: ['In Progress']}
-      {color: '#8ac383', columnTitle: 'Resolved', statuses: ['Resolved']}
-      {color: 'lightgrey', columnTitle: 'Closed', statuses: ['Closed']}
-      {color: 'orange', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
+      {color: '#f37f7f', name: 'backlog', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
+      {color: '#75a7f1', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
+      {color: '#8ac383',name: 'resolved',  columnTitle: 'Resolved', statuses: ['Resolved']}
+      {color: 'lightgrey', name: 'closed', columnTitle: 'Closed', statuses: ['Closed']}
+      {color: 'orange', name: 'other', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
     ]
     ticketConfig:
       nameField: 'author'
