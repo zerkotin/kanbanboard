@@ -1,39 +1,24 @@
 .kanban-column {
   display: inline-block;
   position: relative;
-  width: 33%;
   height: 100%;
   text-align: center;
-  box-shadow: 0px 20px 5px lightgrey inset;
 
   .kanban-column-title {
+    position: relative;
     .unselectable;
     color: white;
+    height: 20px;
+    width: 100%;
   }
 
   .kanban-column-content {
-    position: absolute;
-    width: 90%;
-    height: 90%;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    //background-color: @background-grey;
+    position: relative;;
+    width: 100%;
+    height: calc(~'100% - 20px');
     overflow-y: auto;
     overflow-x: hidden;
-
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    //box-shadow: 3px 3px 1px @box-shaddow-light;
   }
-}
-
-.first-column {
-  border-top-left-radius: 20px;
-}
-
-.last-column {
-  border-top-right-radius: 20px;
 }
 
 @import 'ticket-view';

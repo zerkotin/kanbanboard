@@ -3,17 +3,17 @@ exports.KanbanConfig = {
   teamViewConfig:
     path: 'team'
     title: 'Team'
-    url: '/teamissues'
+    issuesUrl: '/teamissues'
     filters: [
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
       {text: 'Team', name: 'team', type: 'text', description: 'Team name'}
       {text: 'Sprint', name: 'sprint', type: 'text', description: 'Sprint number'}
     ]
     columns: [
-      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
-      {color: '#6c6cf5', columnTitle: 'In Progress...', statuses: ['In Progress']}
+      {color: '#f37f7f', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
+      {color: '#75a7f1', columnTitle: 'In Progress...', statuses: ['In Progress']}
       {color: '#8ac383', columnTitle: 'Resolved', statuses: ['Resolved']}
-      {color: 'orange', columnClass: 'last-column', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
+      {color: 'orange', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
     ]
     ticketConfig:
       nameField: 'assigned_to'
@@ -21,15 +21,15 @@ exports.KanbanConfig = {
   poViewConfig:
     path: 'po'
     title: 'PO'
-    url: '/poissues'
+    issuesUrl: '/poissues'
     filters: [
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
     ]
     columns: [
-      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
-      {color: '#6c6cf5', columnTitle: 'In Progress...', statuses: ['In Progress']}
+      {color: '#f37f7f', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
+      {color: '#75a7f1', columnTitle: 'In Progress...', statuses: ['In Progress']}
       {color: '#8ac383', columnTitle: 'Resolved', statuses: ['Resolved']}
-      {color: 'orange', columnClass: 'last-column', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
+      {color: 'orange', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
     ]
     ticketConfig:
       nameField: 'assigned_to'
@@ -37,14 +37,14 @@ exports.KanbanConfig = {
   developerViewConfig:
     path: 'developer'
     title: 'Developer'
-    url: '/developerissues'
+    issuesUrl: '/developerissues'
     filters: [
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
     ]
     columns: [
-      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
-      {color: '#6c6cf5', columnTitle: 'In Progress...', statuses: ['In Progress']}
-      {color: '#8ac383', columnClass: 'last-column', columnTitle: 'Resolved', statuses: ['Resolved']}
+      {color: '#f37f7f', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
+      {color: '#75a7f1', columnTitle: 'In Progress...', statuses: ['In Progress']}
+      {color: '#8ac383', columnTitle: 'Resolved', statuses: ['Resolved']}
     ]
     ticketConfig:
       nameField: 'author'
@@ -52,17 +52,17 @@ exports.KanbanConfig = {
   ticketViewConfig:
     path: 'tickets'
     title: 'Tickets'
-    url: '/specificissues'
+    issuesUrl: '/specificissues'
     filters: [
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
       {text: 'Tickets', name: 'tickets', type: 'text', description: 'Comma separated tickets'}
     ]
     columns: [
-      {color: '#f37f7f', columnClass: 'first-column', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
-      {color: '#6c6cf5', columnTitle: 'In Progress...', statuses: ['In Progress']}
+      {color: '#f37f7f', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
+      {color: '#75a7f1', columnTitle: 'In Progress...', statuses: ['In Progress']}
       {color: '#8ac383', columnTitle: 'Resolved', statuses: ['Resolved']}
-      {columnTitle: 'Closed', statuses: ['Closed']}
-      {color: 'orange', columnClass: 'last-column', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
+      {color: 'lightgrey', columnTitle: 'Closed', statuses: ['Closed']}
+      {color: 'orange', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
     ]
     ticketConfig:
       nameField: 'author'

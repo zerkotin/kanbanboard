@@ -4,35 +4,32 @@
 exports.TicketView = class TicketView extends Backbone.View
 
   className: 'ticket-view'
-
-  ticketData: null
   ticketConfig: null
+  #model is
 
-  shouldShowDescription: false
 
   events:
     'click .ticket-id': '_onTicketClick'
     'click .ticket-title': '_onTitleClick'
 
   initialize: (options) ->
-    {@ticketData, @ticketConfig} = options
+    {@ticketConfig} = options
     @render()
 
   render: ->
-    @$el.append(template(@ticketData, @ticketConfig))
+    @$el.append(template(@model, @ticketConfig))
 
   _onTicketClick: ->
-    window.open(KanbanConfig.redmineIssuesUrl + @ticketData.get('id'))
+    window.open(KanbanConfig.redmineIssuesUrl + @model.get('id'))
 
   _onTitleClick: ->
-    @shouldShowDescription = not @shouldShowDescription
 
-    if @shouldShowDescription
-      @$('.ticket-description').slideDown()
-      @$('.ticket-header').addClass 'expanded'
-    else
+    if @$('.ticket-header').hasClass('expanded')
       @$('.ticket-description').slideUp()
       @$('.ticket-header').removeClass 'expanded'
+    else
+      @$('.ticket-description').slideDown()
+      @$('.ticket-header').addClass 'expanded'
 
 
 template = (data, config) ->

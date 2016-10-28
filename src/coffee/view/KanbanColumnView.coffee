@@ -13,17 +13,18 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
 
   initialize: (options) ->
     {@columnConfig, @ticketCollection, @config} = options
-    #{@columnClass, @columnTitle, @statuses, @ticketCollection, @size, @color, @config} = options
     @listenTo @ticketCollection, 'sync', @_renderTickets
 
     @render()
 
   render: ->
-    @$el.css('width', @columnConfig.size + '%') if @columnConfig.size
+    size = 100 / @config.columns.length
+    @$el.css('width', size + '%')
     @$el.addClass @columnConfig.columnClass if @columnConfig.columnClass
-    @$el.css('box-shadow', "0px 20px 5px #{@columnConfig.color} inset") if @columnConfig.color
 
     @$el.append(template(@columnConfig.columnTitle))
+
+    @$('.kanban-column-title').css('background', "linear-gradient(to right, white, #{@columnConfig.color})");
 
   _renderTickets: ->
     $ticketsEl = @$('.kanban-column-content')
@@ -31,7 +32,7 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
 
     for ticket in @ticketCollection.models
       if ticket.get('status').name in @columnConfig.statuses
-        view = new TicketView(ticketConfig: @config.ticketConfig, ticketData: ticket)
+        view = new TicketView(ticketConfig: @config.ticketConfig, model: ticket)
         @ticketViews.push(view)
         $ticketsEl.append view.el
 

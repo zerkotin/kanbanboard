@@ -17,8 +17,8 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
   initialize: (options) ->
     {@config} = options
-    @ticketCollection = new TicketCollection()
-    @ticketCollection.url = @config.url #running over the url for different screens
+    @ticketCollection = new TicketCollection(null, {url: @config.issuesUrl})
+    #@ticketCollection.url = @config.issuesUrl #running over the url for different screens
 
     @render()
 
@@ -32,7 +32,6 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
     $wrapper = @$('.kanban-columns-wrapper')
 
     for columnConfig in @config.columns
-      columnConfig.size = Math.floor(100 / @config.columns.length)
       kanbanColumnConfig = {
         columnConfig: columnConfig
         ticketCollection: @ticketCollection
