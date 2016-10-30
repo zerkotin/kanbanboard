@@ -27,6 +27,7 @@ dont forget to delete ```build``` and ```_temp``` directories before building a 
 
 to run the project go to ```build``` directory and run ```npm install``` and then ```npm start```
 
+make sure you have a ```kanbanboard.properties``` file in build folder with a ```redmine.api.url``` property that points to your redmine host
 
 then go to localhost:9090 in your browser.
 
