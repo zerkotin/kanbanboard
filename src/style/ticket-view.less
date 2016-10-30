@@ -1,17 +1,17 @@
 .ticket-view {
   position: relative;
   margin: 10px;
-  border-radius: 15px;
+  .border-radius(15px);
   padding: 10px;
   text-align: left;
-  box-shadow: 3px 3px 1px @box-shaddow-light;
+  .box-shadow-small;
   min-width: 150px;
 
   &:hover {
-    box-shadow: 5px 5px 2px @box-shaddow-light;
+    .box-shadow-big;
   }
 
-  background: linear-gradient(to bottom, white, @gradient-grey);
+  .gradient;
 
   .ticket-header {
     position: relative;
@@ -45,7 +45,7 @@
       margin: 0px 10px 5px 10px;
       cursor: pointer;
       color: @dark-blue;
-      width: calc(~'100% - 67px');
+      .calc(width, '100% - 67px');
       left: 38px;
       display: inline-block;
       text-align: left;

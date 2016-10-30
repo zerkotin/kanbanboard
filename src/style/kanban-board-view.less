@@ -15,20 +15,18 @@
     color: lightgrey;
     font-size: 16px;
     font-weight: bold;
+    height: 50px;
   }
 
   .kanban-columns-wrapper {
     position: absolute;
     display: inline-block;
-    height: 90%;
-    width: 90%;
-
-    left: 50%;
+    .calc(height, '100% - 80px');
+    .calc(width, '100% - 80px');
     top: 60px;
-    transform: translateX(-50%);
-
-    background: linear-gradient(to bottom, white, @gradient-grey);
-    border-radius: 20px;
+    .center-x;
+    .gradient;
+    .border-radius(20px);
 
     overflow: hidden;
   }

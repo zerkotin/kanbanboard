@@ -32,7 +32,7 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
 
     for ticket in @ticketCollection.models
       if ticket.get('status').name in @columnConfig.statuses
-        view = new TicketView(ticketConfig: @config.ticketConfig, model: ticket)
+        view = new TicketView(ticketConfig: @config.ticketConfig, model: ticket, serverConfig: @ticketCollection.config)
         @ticketViews.push(view)
         $ticketsEl.append view.el
 

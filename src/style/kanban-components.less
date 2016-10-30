@@ -3,33 +3,33 @@
   font-size: 14px;
   padding: 5px 13px 5px 13px;
   text-align: center;
-  box-shadow: 1px 1px 2px @box-shaddow-light;
-  background: linear-gradient(to bottom, white, @gradient-grey);
-  border-radius: 5px;
+  .box-shadow-small;
+  .gradient;
+  .border-radius(5px);
   color: @dark-blue;
 
   &:hover {
     cursor: pointer;
     color: @light-blue;
-    box-shadow: 2px 2px 2px @box-shaddow-light;
+    .box-shadow-big;
   }
 
   &:active {
     color: lightgrey;
-    box-shadow: 0px 1px 1px 1px @box-shaddow-light inset;
+    .box-shadow-inner;
   }
 }
 
 .kanban-input {
-  border-radius: 20px;
+  .border-radius(20px);
   border: 1px solid @gradient-grey;
-  background: linear-gradient(to bottom, white, @gradient-grey);
+  .gradient;
   outline: none;
   padding: 5px 10px 5px 10px;
   width: 200px;
   color: grey;
   font-size: 14px;
-  box-shadow: 0px 1px 1px 1px @box-shaddow-light inset;
+  .box-shadow-inner;
 }
 
 .kanban-label {

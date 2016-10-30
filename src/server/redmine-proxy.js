@@ -1,10 +1,16 @@
 //credits: code@uvwxy.de
 var request = require('request');
+var PropertiesReader = require('properties-reader');
+
+var properties = PropertiesReader('./kanbanboard.properties');
 
 module.exports = (function (){
 
     //Config constants
-    var config = {redmineRoot: 'http://project.osthus.com/'};
+    var config = {
+      redmineRoot: 'http://'+properties.get('redmine.api.url')+'/',
+      redmineHost: properties.get('redmine.api.url')
+    };
 
     //API functions
 
@@ -103,7 +109,7 @@ module.exports = (function (){
                     return data.issue;
                 });
                 //returning an answer
-                res.json({issues: issues});
+                res.json({issues: issues, config: config, total: issues.length});
             });
         }
         else {
@@ -137,7 +143,7 @@ module.exports = (function (){
                     });
                     mapCustomFields(issues);
                     issues = filterIssues(issues, localFilters);
-                    res.json({issues: issues, total: issues.length, redmine_total: data.total_count});
+                    res.json({issues: issues, total: issues.length, redmine_total: data.total_count, config: config});
                 }
             }
             else {

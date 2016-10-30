@@ -1,5 +1,6 @@
 exports.KanbanConfig = {
-  redmineIssuesUrl: 'https://project.osthus.com/issues/',
+  serverConfig: null #will be updated from TicketCollection
+  getRedmineIssueUrl: (redmineId) -> return "https://#{@serverConfig.redmineHost}/issues/#{redmineId}"
   teamViewConfig:
     path: 'team'
     title: 'Team'

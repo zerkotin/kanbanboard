@@ -1,17 +1,17 @@
 .column-filter-view {
   z-index: 2;
   position: absolute;
-  background: linear-gradient(to bottom, white, @gradient-grey);
+  .gradient(white, #eee);
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  box-shadow: 2px 2px 2px @box-shaddow-light;
-  //margin-left: -3px;
-  top: 50%;
+  .border-radiuses(0, 0, 20px, 20px);
+  .box-shadow-small;
+
+  .center-y;
   right: -3px;
-  transform: translateY(-50%);
 
   &:hover {
-    box-shadow: 5px 5px 5px @box-shaddow-light;
+    .box-shadow-big;
   }
 
   &:after {
@@ -19,8 +19,7 @@
     content: '\f142';
     position: absolute;
     left: 5px;
-    top: 50%;
-    transform: translateY(-50%);
+    .center-y;
     color: grey;
   }
 
@@ -29,7 +28,7 @@
     color: @dark-blue;
     margin: 5px 15px 5px 10px;
     padding: 5px 15px 5px 10px;
-    border-radius: 20px;
+    .border-radius(20px);
 
     &:hover {
       color: @light-blue;
@@ -37,12 +36,12 @@
     }
 
     &:active {
-      box-shadow: 0px 1px 1px 1px @box-shaddow-light inset;
+      .box-shadow-inner;
       color: lightgrey;
     }
   }
   .selected {
-    box-shadow: 0px 1px 1px 1px @box-shaddow-light inset;
+    .box-shadow-inner;
     color: grey;
   }
 }

@@ -5,8 +5,7 @@ exports.TicketView = class TicketView extends Backbone.View
 
   className: 'ticket-view'
   ticketConfig: null
-  #model is
-
+  serverConfig: null
 
   events:
     'click .ticket-id': '_onTicketClick'
@@ -20,7 +19,7 @@ exports.TicketView = class TicketView extends Backbone.View
     @$el.append(template(@model, @ticketConfig))
 
   _onTicketClick: ->
-    window.open(KanbanConfig.redmineIssuesUrl + @model.get('id'))
+    window.open(KanbanConfig.getRedmineIssueUrl(@model.get('id')))
 
   _onTitleClick: ->
 
