@@ -1,10 +1,12 @@
-exports.ColumnFilterView = class ColumnFilterView extends Backbone.View
+exports.TicketFilterView = class TicketFilterView extends Backbone.View
 
-  className: 'column-filter-view'
+  className: 'ticket-filter-view'
 
   viewState: null
   stateAttribute: null
   animating: false
+  ticketCollection: null
+  ticketField: null
 
   events:
     'click .filter-item': '_onFilterClick'
@@ -12,13 +14,21 @@ exports.ColumnFilterView = class ColumnFilterView extends Backbone.View
     'mouseleave': '_onMouseOut'
 
   initialize: (options) ->
-    {@viewState, @stateAttribute} = options
-    @render()
+    {@ticketCollection, @ticketField, @viewState, @stateAttribute} = options
+    @listenTo @ticketCollection, 'sync', @render
 
   render: () ->
     @$el.empty();
-    for item in @collection
-      @$el.append itemTemplate(item)
+    properties = {}
+    for ticket in @ticketCollection.models
+      value = ticket.get(@ticketField)
+      if value && !properties[value.id]
+        properties[value.id] = value.name
+
+    #TODO save the list to state
+
+    for key of properties
+      @$el.append itemTemplate({id: key, name: properties[key]})
 
     setTimeout(@_onMouseOut, 1000)
 
@@ -45,5 +55,5 @@ exports.ColumnFilterView = class ColumnFilterView extends Backbone.View
 
 itemTemplate = (config) ->
   """
-  <div id="#{config.name}" class="filter-item selected">#{config.columnTitle}</div>
+  <div id="#{config.id}" class="filter-item selected">#{config.name}</div>
   """

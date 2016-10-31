@@ -3,6 +3,7 @@
 {KanbanConfig} = require '../config/KanbanConfig'
 {TicketCollection} = require '../model/TicketCollection'
 {ColumnFilterView} = require './ColumnFilterView'
+{TicketFilterView} = require './TicketFilterView'
 
 #TODO add drag and drop and sync the collection
 exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
@@ -15,7 +16,8 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
   columnViews: []
   filterView: null
-  columnFilterView: null
+  statusFilterView: null
+  assigneeFilterView: null
   viewState: null
 
   initialize: (options) ->
@@ -29,10 +31,14 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
   render: ->
 
     @filterView = new KanbanFilterView(ticketCollection: @ticketCollection, filters: @config.remoteFilters)
-    @columnFilterView = new ColumnFilterView(config: @config, viewState: @viewState)
+    @statusFilterView = new ColumnFilterView(collection: @config.columns, viewState: @viewState, stateAttribute: 'columns')
+
+    @assigneeFilterView = new TicketFilterView(ticketCollection: @ticketCollection, ticketField: 'assigned_to', viewState: @viewState, stateAttribute: 'assignees')
 
     @$el.append @filterView.el
-    @$el.append @columnFilterView.el
+    @$el.append @statusFilterView.el
+    @$el.append @assigneeFilterView.el
+
     @$el.append wrapperTemplate(@config.title)
 
     $wrapper = @$('.kanban-columns-wrapper')
@@ -56,7 +62,8 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
       column.remove();
 
     @filterView.remove();
-    @columnFilterView.remove()
+    @statusFilterView.remove()
+    @assigneeFilterView.remove()
 
     super arguments...
 
