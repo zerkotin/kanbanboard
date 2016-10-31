@@ -11,10 +11,11 @@ exports.KanbanConfig = {
       {text: 'Sprint', name: 'sprint', type: 'text', description: 'Sprint number'}
     ]
     columns: [
-      {color: '#f37f7f', name: 'backlog', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
-      {color: '#75a7f1', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
-      {color: '#8ac383', name: 'resolved' ,columnTitle: 'Resolved', statuses: ['Resolved']}
-      {color: 'orange', name: 'other', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
+      {color: '#75a7f1', name: 'new', columnTitle: 'New', statuses: ['New', 'Queued ']}
+      {color: '#7fe3f3', name: 'todo', columnTitle: 'To Do', statuses: ['Groomed ', 'Committed ']}
+      {color: 'orange', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
+      {color: '#8ac383', name: 'resolved' ,columnTitle: 'Resolved', statuses: ['Review']}
+      {color: '#f37f7f', name: 'removed', columnTitle: 'Removed', statuses: ['Feedback', 'Rejected']}
     ]
     ticketConfig:
       nameField: 'assigned_to'
