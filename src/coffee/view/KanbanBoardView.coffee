@@ -28,7 +28,7 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
   render: ->
 
-    @filterView = new KanbanFilterView(ticketCollection: @ticketCollection, filters: @config.filters)
+    @filterView = new KanbanFilterView(ticketCollection: @ticketCollection, filters: @config.remoteFilters)
     @columnFilterView = new ColumnFilterView(config: @config, viewState: @viewState)
 
     @$el.append @filterView.el

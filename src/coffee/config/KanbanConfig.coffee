@@ -5,10 +5,14 @@ exports.KanbanConfig = {
     path: 'team'
     title: 'Team'
     issuesUrl: '/teamissues'
-    filters: [
+    remoteFilters: [
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
       {text: 'Team', name: 'team', type: 'text', description: 'Team name'}
       {text: 'Sprint', name: 'sprint', type: 'text', description: 'Sprint number'}
+    ]
+    localFilters: [
+      {title: 'Status', name: 'status', field: 'status'}
+      {title: 'Assignee', name: 'assignee', field: 'assigned_to'}
     ]
     columns: [
       {color: '#75a7f1', name: 'new', columnTitle: 'New', statuses: ['New', 'Queued ']}
@@ -24,14 +28,17 @@ exports.KanbanConfig = {
     path: 'po'
     title: 'PO'
     issuesUrl: '/poissues'
-    filters: [
+    remoteFilters: [
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
     ]
+    localFilters: [
+      {title: 'Status', name: 'status', field: 'status'}
+    ]
     columns: [
-      {color: '#f37f7f', name: 'backlog', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
-      {color: '#75a7f1', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
+      {color: '#75a7f1', name: 'backlog', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
+      {color: 'orange', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
       {color: '#8ac383', name: 'resolved', columnTitle: 'Resolved', statuses: ['Resolved']}
-      {color: 'orange', name: 'other', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
+      {color: '#f37f7f', name: 'removed', columnTitle: 'Removed', statuses: ['Feedback', 'Rejected']}
     ]
     ticketConfig:
       nameField: 'assigned_to'
@@ -40,12 +47,12 @@ exports.KanbanConfig = {
     path: 'developer'
     title: 'Developer'
     issuesUrl: '/developerissues'
-    filters: [
+    remoteFilters: [
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
     ]
     columns: [
-      {color: '#f37f7f', name: 'backlog', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
-      {color: '#75a7f1', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
+      {color: '#75a7f1', name: 'backlog', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
+      {color: 'orange', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
       {color: '#8ac383', name: 'resolved', columnTitle: 'Resolved', statuses: ['Resolved']}
     ]
     ticketConfig:
@@ -55,16 +62,19 @@ exports.KanbanConfig = {
     path: 'tickets'
     title: 'Tickets'
     issuesUrl: '/specificissues'
-    filters: [
+    remoteFilters: [
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
       {text: 'Tickets', name: 'tickets', type: 'text', description: 'Comma separated tickets'}
     ]
+    localFilters: [
+      {title: 'Status', name: 'status', field: 'status'}
+    ]
     columns: [
-      {color: '#f37f7f', name: 'backlog', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
-      {color: '#75a7f1', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
+      {color: '#75a7f1', name: 'backlog', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
+      {color: 'orange', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
       {color: '#8ac383',name: 'resolved',  columnTitle: 'Resolved', statuses: ['Resolved']}
       {color: 'lightgrey', name: 'closed', columnTitle: 'Closed', statuses: ['Closed']}
-      {color: 'orange', name: 'other', columnTitle: 'Other', statuses: ['Feedback', 'Rejected']}
+      {color: '#f37f7f', name: 'removed', columnTitle: 'Removed', statuses: ['Feedback', 'Rejected']}
     ]
     ticketConfig:
       nameField: 'author'
