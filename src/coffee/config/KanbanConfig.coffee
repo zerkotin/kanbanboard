@@ -14,7 +14,7 @@ exports.KanbanConfig = {
       {color: '#75a7f1', name: 'new', columnTitle: 'New', statuses: ['New', 'Queued ']}
       {color: '#7fe3f3', name: 'todo', columnTitle: 'To Do', statuses: ['Groomed ', 'Committed ']}
       {color: 'orange', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
-      {color: '#8ac383', name: 'resolved' ,columnTitle: 'Resolved', statuses: ['Review']}
+      {color: '#8ac383', name: 'resolved' ,columnTitle: 'Resolved', statuses: ['Resolved']}
       {color: '#f37f7f', name: 'removed', columnTitle: 'Removed', statuses: ['Feedback', 'Rejected']}
     ]
     ticketConfig:
