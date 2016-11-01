@@ -6,13 +6,19 @@ exports.TicketView = class TicketView extends Backbone.View
   className: 'ticket-view'
   ticketConfig: null
   serverConfig: null
+  viewState: null
+  config: null
 
   events:
     'click .ticket-id': '_onTicketClick'
     'click .ticket-title': '_onTitleClick'
 
   initialize: (options) ->
-    {@ticketConfig} = options
+    {@ticketConfig, @viewState, @config} = options
+
+    for filter in @config.localFilters || []
+      @listenTo @viewState, "change:#{filter.stateAttribute}", @_stateChanged
+
     @render()
 
   render: ->
@@ -20,6 +26,15 @@ exports.TicketView = class TicketView extends Backbone.View
 
   _onTicketClick: ->
     window.open(KanbanConfig.getRedmineIssueUrl(@model.get('id')))
+
+  _stateChanged: ->
+    for filter in @config.localFilters || []
+      data = @model.get(filter.ticketField) || {id: -1, name: 'unassigned'}
+
+      if data.id in @viewState.get(filter.stateAttribute)
+        @$el.show();
+      else
+        @$el.hide()
 
   _onTitleClick: ->
 

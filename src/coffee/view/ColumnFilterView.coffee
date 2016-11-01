@@ -2,8 +2,8 @@ exports.ColumnFilterView = class ColumnFilterView extends Backbone.View
 
   className: 'column-filter-view'
 
-  config: null
   viewState: null
+  stateAttribute: null
   animating: false
 
   events:
@@ -12,11 +12,12 @@ exports.ColumnFilterView = class ColumnFilterView extends Backbone.View
     'mouseleave': '_onMouseOut'
 
   initialize: (options) ->
-    {@config, @viewState} = options
+    {@viewState, @stateAttribute} = options
     @render()
 
   render: () ->
-    for item in @config.columns
+    @$el.empty();
+    for item in @collection
       @$el.append itemTemplate(item)
 
     setTimeout(@_onMouseOut, 1000)
@@ -25,11 +26,11 @@ exports.ColumnFilterView = class ColumnFilterView extends Backbone.View
     selectedFilter = @$('#'+event.target.id)
     if selectedFilter.hasClass 'selected'
       selectedFilter.removeClass 'selected'
-      @viewState.set('columns', @viewState.get('columns').filter((column) => return column isnt event.target.id))
+      @viewState.set(@stateAttribute, @viewState.get(@stateAttribute).filter((column) => return column isnt event.target.id))
     else
       selectedFilter.addClass 'selected'
-      columns = @viewState.get('columns')
-      @viewState.set('columns', columns.concat [event.target.id])
+      columns = @viewState.get(@stateAttribute)
+      @viewState.set(@stateAttribute, columns.concat [event.target.id])
 
   _onMouseOver: ->
     return if @animating
