@@ -6,13 +6,17 @@ exports.TicketView = class TicketView extends Backbone.View
   className: 'ticket-view'
   ticketConfig: null
   serverConfig: null
+  viewState: null
 
   events:
     'click .ticket-id': '_onTicketClick'
     'click .ticket-title': '_onTitleClick'
 
   initialize: (options) ->
-    {@ticketConfig} = options
+    {@ticketConfig, @viewState} = options
+
+    @listenTo @viewState, 'change:assignees', @_stateChanged
+
     @render()
 
   render: ->
@@ -20,6 +24,14 @@ exports.TicketView = class TicketView extends Backbone.View
 
   _onTicketClick: ->
     window.open(KanbanConfig.getRedmineIssueUrl(@model.get('id')))
+
+  _stateChanged: ->
+      data = @model.get('assigned_to') || {id: -1, name: 'unassigned'}
+
+      if data.id in @viewState.get('assignees')
+        @$el.show();
+      else
+        @$el.hide()
 
   _onTitleClick: ->
 

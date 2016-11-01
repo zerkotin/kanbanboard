@@ -20,12 +20,14 @@ exports.TicketFilterView = class TicketFilterView extends Backbone.View
   render: () ->
     @$el.empty();
     properties = {}
+    stateValue = []
     for ticket in @ticketCollection.models
-      value = ticket.get(@ticketField)
-      if value && !properties[value.id]
+      value = ticket.get(@ticketField) || {id: -1, name: 'unassigned'}
+      unless properties[value.id]
         properties[value.id] = value.name
+        stateValue.push +value.id
 
-    #TODO save the list to state
+    @viewState.set(@stateAttribute, stateValue)
 
     for key of properties
       @$el.append itemTemplate({id: key, name: properties[key]})
@@ -36,11 +38,11 @@ exports.TicketFilterView = class TicketFilterView extends Backbone.View
     selectedFilter = @$('#'+event.target.id)
     if selectedFilter.hasClass 'selected'
       selectedFilter.removeClass 'selected'
-      @viewState.set(@stateAttribute, @viewState.get(@stateAttribute).filter((column) => return column isnt event.target.id))
+      @viewState.set(@stateAttribute, @viewState.get(@stateAttribute).filter((column) => return column isnt +event.target.id))
     else
       selectedFilter.addClass 'selected'
       columns = @viewState.get(@stateAttribute)
-      @viewState.set(@stateAttribute, columns.concat [event.target.id])
+      @viewState.set(@stateAttribute, columns.concat [+event.target.id])
 
   _onMouseOver: ->
     return if @animating

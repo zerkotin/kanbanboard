@@ -1,4 +1,13 @@
+.ticket-filter-view {
+  top: 25%;
+  .translate(0, -50%);
+}
+
 .column-filter-view {
+  .center-y;
+}
+
+.column-filter-view, .ticket-filter-view{
   z-index: 2;
   position: absolute;
   .gradient(white, #eee);
@@ -7,7 +16,7 @@
   .border-radiuses(0, 0, 20px, 20px);
   .box-shadow-small;
 
-  .center-y;
+
   right: -3px;
 
   &:hover {
