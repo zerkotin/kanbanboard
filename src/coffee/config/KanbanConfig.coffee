@@ -11,8 +11,7 @@ exports.KanbanConfig = {
       {text: 'Sprint', name: 'sprint', type: 'text', description: 'Sprint number'}
     ]
     localFilters: [
-      {title: 'Status', name: 'status', field: 'status'}
-      {title: 'Assignee', name: 'assignee', field: 'assigned_to'}
+      {title: 'Assignee', stateAttribute: 'assignees', ticketField: 'assigned_to'}
     ]
     columns: [
       {color: '#75a7f1', name: 'new', columnTitle: 'New', statuses: ['New', 'Queued ']}
@@ -32,7 +31,7 @@ exports.KanbanConfig = {
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
     ]
     localFilters: [
-      {title: 'Status', name: 'status', field: 'status'}
+      {title: 'Assignee', stateAttribute: 'assignees', ticketField: 'assigned_to'}
     ]
     columns: [
       {color: '#75a7f1', name: 'backlog', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
@@ -65,9 +64,6 @@ exports.KanbanConfig = {
     remoteFilters: [
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
       {text: 'Tickets', name: 'tickets', type: 'text', description: 'Comma separated tickets'}
-    ]
-    localFilters: [
-      {title: 'Status', name: 'status', field: 'status'}
     ]
     columns: [
       {color: '#75a7f1', name: 'backlog', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}

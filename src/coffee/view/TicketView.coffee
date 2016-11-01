@@ -15,6 +15,7 @@ exports.TicketView = class TicketView extends Backbone.View
   initialize: (options) ->
     {@ticketConfig, @viewState} = options
 
+    #TODO listeTo all localFilters from the config
     @listenTo @viewState, 'change:assignees', @_stateChanged
 
     @render()

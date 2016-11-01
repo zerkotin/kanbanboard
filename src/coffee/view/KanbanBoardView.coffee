@@ -17,7 +17,7 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
   columnViews: []
   filterView: null
   statusFilterView: null
-  assigneeFilterView: null
+  localFilterViews: []
   viewState: null
 
   initialize: (options) ->
@@ -33,11 +33,13 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
     @filterView = new KanbanFilterView(ticketCollection: @ticketCollection, filters: @config.remoteFilters)
     @statusFilterView = new ColumnFilterView(collection: @config.columns, viewState: @viewState, stateAttribute: 'columns')
 
-    @assigneeFilterView = new TicketFilterView(ticketCollection: @ticketCollection, ticketField: 'assigned_to', viewState: @viewState, stateAttribute: 'assignees')
+    for filter in @config.localFilters || []
+        localFilterView = new TicketFilterView(ticketCollection: @ticketCollection, ticketField: filter.ticketField, viewState: @viewState, stateAttribute: filter.stateAttribute)
+        @localFilterViews.push localFilterView
+        @$el.append localFilterView.el
 
     @$el.append @filterView.el
     @$el.append @statusFilterView.el
-    @$el.append @assigneeFilterView.el
 
     @$el.append wrapperTemplate(@config.title)
 
@@ -63,7 +65,9 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
     @filterView.remove();
     @statusFilterView.remove()
-    @assigneeFilterView.remove()
+
+    for localFilter in @localFilterViews
+      localFilter.remove()
 
     super arguments...
 
