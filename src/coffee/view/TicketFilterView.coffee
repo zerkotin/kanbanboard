@@ -27,7 +27,9 @@ exports.TicketFilterView = class TicketFilterView extends Backbone.View
         properties[value.id] = value.name
         stateValue.push +value.id
 
-    @viewState.set(@stateAttribute, stateValue)
+    data = {}
+    data[@stateAttribute] = stateValue
+    @viewState.set(data, {silent: true}) # silent only for startup
 
     for key of properties
       @$el.append itemTemplate({id: key, name: properties[key]})

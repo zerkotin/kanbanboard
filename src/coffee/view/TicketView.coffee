@@ -16,9 +16,6 @@ exports.TicketView = class TicketView extends Backbone.View
   initialize: (options) ->
     {@ticketConfig, @viewState, @config} = options
 
-    for filter in @config.localFilters || []
-      @listenTo @viewState, "change:#{filter.stateAttribute}", @_stateChanged
-
     @render()
 
   render: ->
@@ -27,20 +24,7 @@ exports.TicketView = class TicketView extends Backbone.View
   _onTicketClick: ->
     window.open(KanbanConfig.getRedmineIssueUrl(@model.get('id')))
 
-  _stateChanged: ->
-    showTicket = true;
-    for filter in @config.localFilters || []
-      data = @model.get(filter.ticketField) || {id: -1, name: 'unassigned'}
-      unless data.id in @viewState.get(filter.stateAttribute)
-        showTicket = false
-
-    if showTicket
-      @$el.show();
-    else
-      @$el.hide()
-
   _onTitleClick: ->
-
     if @$('.ticket-header').hasClass('expanded')
       @$('.ticket-description').slideUp()
       @$('.ticket-header').removeClass 'expanded'

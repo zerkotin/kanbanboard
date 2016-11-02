@@ -15,6 +15,9 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
     @listenTo @ticketCollection, 'sync', @_renderTickets
     @listenTo @viewState, 'change:columns', @_columnsChanged
 
+    for filter in @config.localFilters || []
+      @listenTo @viewState, "change:#{filter.stateAttribute}", @_renderTickets
+
     @render()
 
   render: ->
@@ -28,21 +31,39 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
 
   _renderTickets: ->
     $ticketsEl = @$('.kanban-column-content')
+    @_removeTickets()
     $ticketsEl.empty()
 
-    for ticket in @ticketCollection.models
-      if ticket.get('status').name in @columnConfig.statuses
-        view = new TicketView(
-          ticketConfig: @config.ticketConfig
-          model: ticket
-          serverConfig: @ticketCollection.config
-          viewState: @viewState
-          config: @config
-        )
-        @ticketViews.push(view)
-        $ticketsEl.append view.el
+    filteredTickets = @_getFilteredTickets()
+
+    for ticket in filteredTickets
+      view = new TicketView(
+        ticketConfig: @config.ticketConfig
+        model: ticket
+        serverConfig: @ticketCollection.config
+        viewState: @viewState
+        config: @config
+      )
+      @ticketViews.push(view)
+      $ticketsEl.append view.el
+
+    @$('.counter').html('('+filteredTickets.length+')')
 
     return @
+
+  _getFilteredTickets: ->
+    filteredTickets = @ticketCollection.models.filter((ticket) =>
+      return  ticket.get('status').name in @columnConfig.statuses
+    )
+
+    for filter in @config.localFilters || []
+      filteredTickets = filteredTickets.filter((ticket) =>
+        data = ticket.get(filter.ticketField) || {id: -1, name: 'unassigned'}
+        return data.id in @viewState.get(filter.stateAttribute)
+      )
+
+    return filteredTickets
+
 
   _columnsChanged: ->
     if @columnConfig.name in @viewState.get('columns')
@@ -53,13 +74,17 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
     size = 100 / @viewState.get('columns').length
     @$el.css('width', size + '%')
 
-  remove: ->
+  _removeTickets: ->
     for view in @ticketViews
       view.remove();
+    @ticketViews = []
+
+  remove: ->
+    @_removeTickets()
 
     super arguments...
 
 template = (columnTitle) ->
   """
-  <div class="kanban-column-title">#{columnTitle}</div><div class="kanban-column-content"></div>
+  <div class="kanban-column-title">#{columnTitle}<span class="counter"></span></div><div class="kanban-column-content"></div>
   """
