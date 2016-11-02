@@ -49,13 +49,13 @@ exports.TicketFilterView = class TicketFilterView extends Backbone.View
   _onMouseOver: ->
     return if @animating
     @animating = true
-    @$el.animate({right: '-3px'}, 500, 'swing', => @animating = false)
+    @$el.animate({right: '-3px'}, 200, 'swing', => @animating = false)
 
   _onMouseOut: =>
     return if @animating
     @animating = true
     move = @$el.width() - 20
-    @$el.animate({right: "-#{move}px"}, 500, 'swing', => @animating = false)
+    @$el.animate({right: "-#{move}px"}, 200, 'swing', => @animating = false)
 
 itemTemplate = (config) ->
   """

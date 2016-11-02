@@ -32,13 +32,13 @@ exports.SideNavigationView = class SideNavigationView extends Backbone.View
   _onMouseOver: ->
     return if @animating
     @animating = true
-    @$el.animate({left: '-3px'}, 500, 'swing', => @animating = false)
+    @$el.animate({left: '-3px'}, 200, 'swing', => @animating = false)
 
   _onMouseOut: =>
     return if @animating
     @animating = true
     move = @$el.width() - 20
-    @$el.animate({left: "-#{move}px"}, 500, 'swing', => @animating = false)
+    @$el.animate({left: "-#{move}px"}, 200, 'swing', => @animating = false)
 
 itemTemplate = (config) ->
   """
