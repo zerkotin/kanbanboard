@@ -25,19 +25,19 @@ exports.TicketView = class TicketView extends Backbone.View
     window.open(KanbanConfig.getRedmineIssueUrl(@model.get('id')))
 
   _onTitleClick: ->
-    if @$('.ticket-header').hasClass('expanded')
+    if @$('.expander').hasClass('expanded')
       @$('.ticket-description').slideUp()
-      @$('.ticket-header').removeClass 'expanded'
+      @$('.expander').removeClass 'expanded'
     else
       @$('.ticket-description').slideDown()
-      @$('.ticket-header').addClass 'expanded'
+      @$('.expander').addClass 'expanded'
 
 
 template = (data, config) ->
   """
   <div class="ticket-header">
-    <span class="ticket-id">#{data.get('id')}</span>
-    <span class="ticket-title">#{data.get('subject')}</span>
+    <span class="ticket-id">##{data.get('id')}</span>
+    <span class="ticket-title"><span class="text">#{data.get('subject')}</span><span class="expander"></span></span>
   </div>
   <div class="ticket-description" style="display: none">#{data.get('description')}</div>
   <div class="ticket-footer">

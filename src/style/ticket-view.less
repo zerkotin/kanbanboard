@@ -19,11 +19,12 @@
 
     .ticket-id {
       .unselectable;
-      position: absolute;
-      top: 0;
-      left: 0;
+      position: relative;;
       color: grey;
       cursor: pointer;
+      width: 45px;
+      display: inline-block;
+      vertical-align: top;
 
       &:hover {
         color: @light-blue;
@@ -32,21 +33,14 @@
       &:active {
         color: lightgrey;
       }
-
-      &:before {
-        content: '#'
-      }
     }
 
     .ticket-title {
       .unselectable;
       position: relative;
-      font-weight: bold;
-      margin: 0px 10px 5px 10px;
       cursor: pointer;
       color: @dark-blue;
-      .calc(width, '100% - 67px');
-      left: 38px;
+      .calc(width, '100% - 50px');
       display: inline-block;
       text-align: left;
       overflow-x: hidden;
@@ -58,28 +52,39 @@
       &:active {
         color: lightgrey;
       }
-    }
 
-    &.expanded {
-      &:after {
-        content: '-';
+      .text {
+        position: relative;
+        display: inline-block;
+        .calc(width, '100% - 15px');
       }
-    }
 
-    &:after {
-      content: '+';
-      position: absolute;
-      display: inline-block;
-      right: 2px;
-      top: 0;
-      color: grey;
-      font-weight: bold;
-      //cursor: pointer;
+      .expander {
+        position: absolute;
+        display: inline-block;
+        right: 0;
+        top:0;
+        width: 10px;
+        text-align: center;
+
+        &.expanded {
+          &:after {
+            content: '\f066';
+          }
+        }
+
+        &:after {
+          content: '\f065';
+          font-family: 'FontAwesome';
+          font-size: 8px;
+          vertical-align: top;
+        }
+      }
+
     }
   }
 
   .ticket-description {
-    margin: 5px;
     font-size: 12px;
     overflow-x: auto;
   }
