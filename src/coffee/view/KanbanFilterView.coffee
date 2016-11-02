@@ -12,6 +12,7 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
 
   events:
     'click .kanban-button': '_onFilterClick'
+    'click .kanban-link': '_onEditFilterClicked'
 
   initialize: (options) ->
     {@ticketCollection, @filters} = options
@@ -20,6 +21,8 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
     @render()
 
   render: ->
+    @$el.append editFilterTemplate()
+
     for filter in @filters
       @$el.append filterTemplate(filter)
 
@@ -52,9 +55,22 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
 
     return @
 
+  _onEditFilterClicked: ->
+    @$('.kanban-label').show()
+    @$('.kanban-input').show()
+    @$('.kanban-link').hide()
+
   _stopSpinner: ->
     @$('.fa-spinner').addClass 'hidden'
 
+    @$('.kanban-label').hide()
+    @$('.kanban-input').hide()
+    @$('.kanban-link').show()
+
+editFilterTemplate = ->
+  """
+  <span class="kanban-link" style="display: none;">edit filter</span>
+  """
 
 filterTemplate = (filter) ->
   """

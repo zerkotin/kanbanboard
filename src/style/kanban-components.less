@@ -20,13 +20,29 @@
   }
 }
 
+.kanban-link {
+  .unselectable;
+  color: @dark-blue;
+  text-decoration: underline;
+  padding: 5px 10px 5px 10px;
+
+  &:hover {
+    color: @light-blue;
+    cursor: pointer;
+  }
+
+  &:active {
+    color: lightgrey;
+  }
+}
+
 .kanban-input {
   .border-radius(20px);
   border: 1px solid @gradient-grey;
   .gradient;
   outline: none;
   padding: 5px 10px 5px 10px;
-  width: 200px;
+  width: 100px;
   color: grey;
   font-size: 14px;
   .box-shadow-inner;
