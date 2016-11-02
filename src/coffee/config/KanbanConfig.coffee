@@ -31,7 +31,7 @@ exports.KanbanConfig = {
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
     ]
     localFilters: [
-      {title: 'Author', stateAttribute: 'authors', ticketField: 'author'}
+      {title: 'Projects', stateAttribute: 'projects', ticketField: 'project'}
     ]
     columns: [
       {color: '#75a7f1', name: 'new', columnTitle: 'New', statuses: ['New', 'Queued ']}
