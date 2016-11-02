@@ -130,7 +130,6 @@ module.exports = (function (){
 
                     //recursive call with the next page
                     var url = buildUrl(remoteFilters, 'issues.json');
-                    console.log(url);
                     request({url: url, json: true}, callback);
                 }
                 else {
@@ -158,7 +157,6 @@ module.exports = (function (){
 
         if(req.query && req.query.key) {
             var url = buildUrl(remoteFilters, 'issues.json');
-            console.log(url);
             request({url: url, json: true}, callback);
         }
         else {
