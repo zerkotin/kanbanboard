@@ -12,6 +12,7 @@ function mapRedmineQueries() {
   app.get('/developerissues', queries.developerIssues);
   app.get('/poissues', queries.poIssues);
   app.get('/specificissues', queries.specificIssues);
+  app.get('/unassignedissues', queries.unassignedIssues);
 
 }
 

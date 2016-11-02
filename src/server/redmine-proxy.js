@@ -18,7 +18,7 @@ module.exports = (function (){
     //sometimes we expect filters and they aren't sent
     function removeEmptyFilters(filters){
         for(var prop in filters) {
-            if(!filters[prop] || filters[prop].trim() =='') {
+            if(filters[prop] == null || !filters[prop].trim()) {
                 delete filters[prop];
             }
         }
@@ -117,7 +117,7 @@ module.exports = (function (){
         }
     }
 
-    function redmineAllPagesQuery(req, res, remoteFilters, localFilters, path) {
+    function redmineAllPagesQuery(req, res, remoteFilters, localFilters, path, removeEmptyStrings) {
         var results = [];
         function callback(error, response, data){
             if (!error && response.statusCode === 200) {
@@ -130,6 +130,7 @@ module.exports = (function (){
 
                     //recursive call with the next page
                     var url = buildUrl(remoteFilters, 'issues.json');
+                    console.log(url);
                     request({url: url, json: true}, callback);
                 }
                 else {
@@ -151,12 +152,13 @@ module.exports = (function (){
             }
         }
 
-        if(localFilters) {
+        if(localFilters && removeEmptyStrings) {
             removeEmptyFilters(localFilters);
         }
 
         if(req.query && req.query.key) {
             var url = buildUrl(remoteFilters, 'issues.json');
+            console.log(url);
             request({url: url, json: true}, callback);
         }
         else {

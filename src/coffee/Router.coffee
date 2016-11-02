@@ -13,6 +13,7 @@ exports.Router = class Router extends Backbone.Router
     'po': 'po'
     'developer': 'developer'
     'tickets': 'tickets'
+    'unassigned': 'unassigned'
 
   team: ->
     @_browseToPage(KanbanBoardView, {config: KanbanConfig.teamViewConfig})
@@ -25,6 +26,9 @@ exports.Router = class Router extends Backbone.Router
 
   tickets: ->
     @_browseToPage(KanbanBoardView, {config: KanbanConfig.ticketViewConfig})
+
+  unassigned: ->
+    @_browseToPage(KanbanBoardView, {config: KanbanConfig.unassignedViewConfig})
 
 
   _browseToPage: (viewConstructor, viewOptions) ->

@@ -12,7 +12,7 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
 
   events:
     'click .kanban-button': '_onFilterClick'
-    'click .kanban-link': '_onEditFilterClicked'
+    'click .kanban-link': '_showFilters'
 
   initialize: (options) ->
     {@ticketCollection, @filters} = options
@@ -49,23 +49,32 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
     return @
 
   _loadFromLocalStorage: ->
+    hideFilters = false
     for filter in @filters
       val = localStorage.getItem(filter.name)
       @$(".#{filter.name}-input").val(val)
+      if val
+        hideFilters = true
+
+    if(hideFilters)
+      @_hideFilters()
 
     return @
 
-  _onEditFilterClicked: ->
+  _showFilters: ->
     @$('.kanban-label').show()
     @$('.kanban-input').show()
     @$('.kanban-link').hide()
 
-  _stopSpinner: ->
-    @$('.fa-spinner').addClass 'hidden'
-
+  _hideFilters: ->
     @$('.kanban-label').hide()
     @$('.kanban-input').hide()
     @$('.kanban-link').show()
+
+  _stopSpinner: ->
+    @$('.fa-spinner').addClass 'hidden'
+    @_hideFilters()
+
 
 editFilterTemplate = ->
   """
@@ -78,6 +87,6 @@ filterTemplate = (filter) ->
   """
 filterButtonTemplate = ->
   """
-  <span class="kanban-button filter-button">Load</span>
+  <span class="kanban-button filter-button"><i class="fa fa-refresh" aria-hidden="true"></i>Refresh</span>
   <i class="fa fa-spinner fa-pulse fa-fw hidden"></i>
   """

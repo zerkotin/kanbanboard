@@ -23,6 +23,23 @@ exports.KanbanConfig = {
     ticketConfig:
       nameField: 'assigned_to'
 
+  unassignedViewConfig:
+    path: 'unassigned'
+    title: 'Unassigned'
+    issuesUrl: '/unassignedissues'
+    remoteFilters: [
+      {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
+    ]
+    columns: [
+      {color: '#75a7f1', name: 'new', columnTitle: 'New', statuses: ['New', 'Queued ']}
+      {color: '#7fe3f3', name: 'todo', columnTitle: 'To Do', statuses: ['Groomed ', 'Committed ']}
+      {color: 'orange', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
+      {color: '#8ac383', name: 'resolved' ,columnTitle: 'Resolved', statuses: ['Resolved']}
+      {color: '#f37f7f', name: 'removed', columnTitle: 'Removed', statuses: ['Feedback', 'Rejected']}
+    ]
+    ticketConfig:
+      nameField: 'author'
+
   poViewConfig:
     path: 'po'
     title: 'PO'
@@ -80,6 +97,7 @@ exports.KanbanConfig = {
     {path: 'po', template: '<i class="fa fa-user-secret" aria-hidden="true"></i>PO'}
     {path: 'developer', template: '<i class="fa fa-laptop" aria-hidden="true"></i>Developer'}
     {path: 'tickets', template: '<i class="fa fa-ticket" aria-hidden="true"></i>Tickets'}
+    {path: 'unassigned', template: '<i class="fa fa-exclamation-circle" aria-hidden="true"></i>Unassigned'}
   ]
 
 }
