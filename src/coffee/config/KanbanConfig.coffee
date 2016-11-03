@@ -47,7 +47,7 @@ exports.KanbanConfig = {
         colorEnd: '#f37f7f',
         colorStart: '#f6d2d2'
         id: 'removed',
-        name: 'Removed',
+        name: 'Feedback',
         statuses: ['Feedback', 'Rejected']
       }
     ]
@@ -98,7 +98,7 @@ exports.KanbanConfig = {
         colorEnd: '#f37f7f',
         colorStart: '#f6d2d2'
         id: 'removed',
-        name: 'Removed',
+        name: 'Feedback',
         statuses: ['Feedback', 'Rejected']
       }
     ]
@@ -142,7 +142,7 @@ exports.KanbanConfig = {
         colorEnd: '#f37f7f',
         colorStart: '#f6d2d2'
         id: 'removed',
-        name: 'Removed',
+        name: 'Feedback',
         statuses: ['Feedback', 'Rejected']
       }
     ]
@@ -227,7 +227,7 @@ exports.KanbanConfig = {
         colorEnd: '#f37f7f'
         colorStart: '#f6d2d2'
         id: 'removed'
-        name: 'Removed'
+        name: 'Feedback'
         statuses: ['Feedback', 'Rejected']
       }
     ]
