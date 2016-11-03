@@ -16,9 +16,9 @@
 }
 
 .box-shadow-small {
-  -webkit-box-shadow: 2px 2px 2px @box-shaddow-light;
-	-moz-box-shadow: 2px 2px 2px @box-shaddow-light;
-  box-shadow: 2px 2px 2px @box-shaddow-light;
+  -webkit-box-shadow: 0px 1px 1px @box-shaddow-light;
+	-moz-box-shadow: 0px 1px 1px @box-shaddow-light;
+  box-shadow: 0px 1px 1px @box-shaddow-light;
 }
 
 .box-shadow-inner {
@@ -28,9 +28,9 @@
 }
 
 .box-shadow-big {
-  -webkit-box-shadow: 5px 5px 5px @box-shaddow-light;
-	-moz-box-shadow: 5px 5px 5px @box-shaddow-light;
-  box-shadow: 5px 5px 5px @box-shaddow-light;
+  -webkit-box-shadow: 2px 2px 1px @box-shaddow-light;
+	-moz-box-shadow: 2px 2px 1px @box-shaddow-light;
+  box-shadow: 2px 2px 1px @box-shaddow-light;
 }
 
 
@@ -118,7 +118,7 @@
 	opacity: 		@opacity;
 }
 
-.gradient (@startColor: white, @endColor: #eee) {
+.gradient (@startColor: #fefefe, @endColor: #eeeeee) {
 	background-color: @startColor;
 	background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
 	background: -webkit-linear-gradient(top, @startColor, @endColor);

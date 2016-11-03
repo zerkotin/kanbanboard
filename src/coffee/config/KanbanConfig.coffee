@@ -11,14 +11,45 @@ exports.KanbanConfig = {
       {text: 'Sprint', name: 'sprint', type: 'text', description: 'Sprint number'}
     ]
     localFilters: [
-      {title: 'Assignee', stateAttribute: 'assignees', ticketField: 'assigned_to'}
+      {title: 'Assignee', stateAttribute: 'assignees', ticketField: 'assigned_to', position: 'top'}
+      {title: 'Project', stateAttribute: 'projects', ticketField: 'project', position: 'bottom'}
     ]
     columns: [
-      {color: '#75a7f1', name: 'new', columnTitle: 'New', statuses: ['New', 'Queued ']}
-      {color: '#7fe3f3', name: 'todo', columnTitle: 'To Do', statuses: ['Groomed ', 'Committed ']}
-      {color: 'orange', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
-      {color: '#8ac383', name: 'resolved' ,columnTitle: 'Resolved', statuses: ['Resolved']}
-      {color: '#f37f7f', name: 'removed', columnTitle: 'Removed', statuses: ['Feedback', 'Rejected']}
+      {
+        colorEnd: '#75a7f1',
+        colorStart: '#d4e3fa'
+        id: 'new',
+        name: 'New',
+        statuses: ['New', 'Queued ']
+      }
+      {
+        colorEnd: '#7fe3f3',
+        colorStart: '#e1fafe'
+        id: 'todo',
+        name: 'To Do',
+        statuses: ['Groomed ', 'Committed ']
+      }
+      {
+        colorEnd: 'orange',
+        colorStart: '#ffecc8'
+        id: 'inprogress',
+        name: 'In Progress...',
+        statuses: ['In Progress']
+      }
+      {
+        colorEnd: '#8ac383',
+        colorStart: '#daffd5'
+        id: 'resolved',
+        name: 'Resolved',
+        statuses: ['Resolved']
+      }
+      {
+        colorEnd: '#f37f7f',
+        colorStart: '#f6d2d2'
+        id: 'removed',
+        name: 'Removed',
+        statuses: ['Feedback', 'Rejected']
+      }
     ]
     ticketConfig:
       nameField: 'assigned_to'
@@ -31,14 +62,45 @@ exports.KanbanConfig = {
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
     ]
     localFilters: [
-      {title: 'Projects', stateAttribute: 'projects', ticketField: 'project'}
+      {title: 'Author', stateAttribute: 'authors', ticketField: 'author', position: 'top'}
+      {title: 'Projects', stateAttribute: 'projects', ticketField: 'project', position: 'bottom'}
     ]
     columns: [
-      {color: '#75a7f1', name: 'new', columnTitle: 'New', statuses: ['New', 'Queued ']}
-      {color: '#7fe3f3', name: 'todo', columnTitle: 'To Do', statuses: ['Groomed ', 'Committed ']}
-      {color: 'orange', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
-      {color: '#8ac383', name: 'resolved' ,columnTitle: 'Resolved', statuses: ['Resolved']}
-      {color: '#f37f7f', name: 'removed', columnTitle: 'Removed', statuses: ['Feedback', 'Rejected']}
+      {
+        colorEnd: '#75a7f1',
+        colorStart: '#d4e3fa'
+        id: 'new',
+        name: 'New',
+        statuses: ['New', 'Queued ']
+      }
+      {
+        colorEnd: '#7fe3f3',
+        colorStart: '#e1fafe'
+        id: 'todo',
+        name: 'To Do',
+        statuses: ['Groomed ', 'Committed ']
+      }
+      {
+        colorEnd: 'orange',
+        colorStart: '#ffecc8'
+        id: 'inprogress',
+        name: 'In Progress...',
+        statuses: ['In Progress']
+      }
+      {
+        colorEnd: '#8ac383',
+        colorStart: '#daffd5'
+        id: 'resolved',
+        name: 'Resolved',
+        statuses: ['Resolved']
+      }
+      {
+        colorEnd: '#f37f7f',
+        colorStart: '#f6d2d2'
+        id: 'removed',
+        name: 'Removed',
+        statuses: ['Feedback', 'Rejected']
+      }
     ]
     ticketConfig:
       nameField: 'author'
@@ -51,13 +113,38 @@ exports.KanbanConfig = {
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
     ]
     localFilters: [
-      {title: 'Assignee', stateAttribute: 'assignees', ticketField: 'assigned_to'}
+      {title: 'Assignee', stateAttribute: 'assignees', ticketField: 'assigned_to', position: 'top'}
+      {title: 'Project', stateAttribute: 'projects', ticketField: 'project', position: 'bottom'}
     ]
     columns: [
-      {color: '#75a7f1', name: 'backlog', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
-      {color: 'orange', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
-      {color: '#8ac383', name: 'resolved', columnTitle: 'Resolved', statuses: ['Resolved']}
-      {color: '#f37f7f', name: 'removed', columnTitle: 'Removed', statuses: ['Feedback', 'Rejected']}
+      {
+        colorEnd: '#75a7f1',
+        colorStart: '#d4e3fa'
+        id: 'backlog',
+        name: 'Backlog',
+        statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']
+      }
+      {
+        colorEnd: 'orange',
+        colorStart: '#ffecc8'
+        id: 'inprogress',
+        name: 'In Progress...',
+        statuses: ['In Progress']
+      }
+      {
+        colorEnd: '#8ac383',
+        colorStart: '#daffd5'
+        id: 'resolved',
+        name: 'Resolved',
+        statuses: ['Resolved']
+      }
+      {
+        colorEnd: '#f37f7f',
+        colorStart: '#f6d2d2'
+        id: 'removed',
+        name: 'Removed',
+        statuses: ['Feedback', 'Rejected']
+      }
     ]
     ticketConfig:
       nameField: 'assigned_to'
@@ -70,12 +157,31 @@ exports.KanbanConfig = {
       {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
     ]
     localFilters: [
-      {title: 'Author', stateAttribute: 'authors', ticketField: 'author'}
+      {title: 'Author', stateAttribute: 'authors', ticketField: 'author', position: 'top'}
+      {title: 'Project', stateAttribute: 'projects', ticketField: 'project', position: 'bottom'}
     ]
     columns: [
-      {color: '#75a7f1', name: 'backlog', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
-      {color: 'orange', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
-      {color: '#8ac383', name: 'resolved', columnTitle: 'Resolved', statuses: ['Resolved']}
+      {
+        colorEnd: '#75a7f1',
+        colorStart: '#d4e3fa'
+        id: 'backlog',
+        name: 'Backlog',
+        statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']
+      }
+      {
+        colorEnd: 'orange',
+        colorStart: '#ffecc8'
+        id: 'inprogress',
+        name: 'In Progress...',
+        statuses: ['In Progress']
+      }
+      {
+        colorEnd: '#8ac383',
+        colorStart: '#daffd5'
+        id: 'resolved',
+        name: 'Resolved',
+        statuses: ['Resolved']
+      }
     ]
     ticketConfig:
       nameField: 'author'
@@ -89,11 +195,41 @@ exports.KanbanConfig = {
       {text: 'Tickets', name: 'tickets', type: 'text', description: 'Comma separated tickets'}
     ]
     columns: [
-      {color: '#75a7f1', name: 'backlog', columnTitle: 'Backlog', statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']}
-      {color: 'orange', name: 'inprogress', columnTitle: 'In Progress...', statuses: ['In Progress']}
-      {color: '#8ac383',name: 'resolved',  columnTitle: 'Resolved', statuses: ['Resolved']}
-      {color: 'lightgrey', name: 'closed', columnTitle: 'Closed', statuses: ['Closed']}
-      {color: '#f37f7f', name: 'removed', columnTitle: 'Removed', statuses: ['Feedback', 'Rejected']}
+      {
+        colorEnd: '#75a7f1'
+        colorStart: '#d4e3fa'
+        id: 'backlog'
+        name: 'Backlog'
+        statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']
+      }
+      {
+        colorEnd: 'orange'
+        colorStart: '#ffecc8'
+        id: 'inprogress'
+        name: 'In Progress...'
+        statuses: ['In Progress']
+      }
+      {
+        colorEnd: '#8ac383'
+        colorStart: '#daffd5'
+        id: 'resolved'
+        name: 'Resolved'
+        statuses: ['Resolved']
+      }
+      {
+        colorEnd: 'lightgrey'
+        colorStart: '#efefef'
+        id: 'closed'
+        name: 'Closed'
+        statuses: ['Closed']
+      }
+      {
+        colorEnd: '#f37f7f'
+        colorStart: '#f6d2d2'
+        id: 'removed'
+        name: 'Removed'
+        statuses: ['Feedback', 'Rejected']
+      }
     ]
     ticketConfig:
       nameField: 'author'

@@ -2,7 +2,6 @@ exports.SideNavigationView = class SideNavigationView extends Backbone.View
 
   className: 'side-navigation-view'
 
-  navigationItems: null
   animating: false
 
   events:
@@ -11,11 +10,10 @@ exports.SideNavigationView = class SideNavigationView extends Backbone.View
     'mouseleave': '_onMouseOut'
 
   initialize: (options) ->
-    {@navigationItems} = options
     @render(options.initSelectedPath)
 
   render: (initSelectedPath) ->
-    for item in @navigationItems
+    for item in @collection
       @$el.append itemTemplate(item)
 
     @$('#'+initSelectedPath).addClass 'selected' # selecting the item after refresh screen

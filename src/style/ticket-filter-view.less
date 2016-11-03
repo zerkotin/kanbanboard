@@ -1,0 +1,84 @@
+.ticket-filter-view{
+  z-index: 2;
+  position: absolute;
+  .gradient(white, #eee);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  .border-radiuses(0, 0, 20px, 20px);
+  .box-shadow-small;
+  .center-y;
+  color: grey;
+
+  right: -3px;
+
+  &.top {
+    top: 25%;
+  }
+  &.bottom {
+    top: 75%;
+  }
+
+  &:hover {
+    .box-shadow-big;
+  }
+
+  &:after {
+    font-family: FontAwesome;
+    content: '\f142';
+    position: absolute;
+    left: 5px;
+    .center-y;
+    color: grey;
+  }
+
+  .title {
+    margin-top: 5px;
+    position: relative;;
+    width: 100%;
+    text-align: center;
+  }
+
+  .select {
+    position: relative;;
+    font-size: 10px;
+    width: 100%;
+    text-align: center;
+
+    .all {
+      .clickable;
+      padding: 4px;
+      position: relative;
+      display: inline-block;
+      .calc(width, '50% - 20px');
+      .border-radius(20px);
+    }
+
+    .none {
+      .clickable;
+      padding: 4px;
+      position: relative;
+      display: inline-block;
+      .calc(width, '50% - 20px');
+      .border-radius(20px);
+    }
+  }
+
+  .items-wrapper {
+    max-height: 150px;
+    overflow-y: auto;
+    margin-bottom: 5px;
+
+    .filter-item {
+      .clickable;
+      margin: 5px 15px 5px 10px;
+      padding: 5px 15px 5px 10px;
+      .border-radius(20px);
+    }
+
+    .selected {
+      .box-shadow-inner;
+      color: grey;
+    }
+  }
+
+}

@@ -2,17 +2,12 @@
 {KanbanFilterView} = require './KanbanFilterView'
 {KanbanConfig} = require '../config/KanbanConfig'
 {TicketCollection} = require '../model/TicketCollection'
-{ColumnFilterView} = require './ColumnFilterView'
 {TicketFilterView} = require './TicketFilterView'
 
 #TODO add drag and drop and sync the collection
 exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
   className: 'kanban-board-view'
-
-  config: null
-
-  ticketCollection: null
 
   columnViews: []
   filterView: null
@@ -21,36 +16,54 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
   viewState: null
 
   initialize: (options) ->
-    {@config} = options
+    #{} = options
     @viewState = new Backbone.Model
-    @viewState.set('columns', @config.columns.map((column) -> return column.name))
-    @ticketCollection = new TicketCollection(null, {url: @config.issuesUrl})
+    @viewState.set('columns', @model.columns.map((column) -> return column.name))
+    @collection = new TicketCollection(null, {url: @model.issuesUrl})
 
     @render()
 
   render: ->
+    @filterView = new KanbanFilterView(ticketCollection: @collection, collection: @model.remoteFilters)
 
-    @filterView = new KanbanFilterView(ticketCollection: @ticketCollection, filters: @config.remoteFilters)
-    @statusFilterView = new ColumnFilterView(collection: @config.columns, viewState: @viewState, stateAttribute: 'columns')
+    #filter with static collection
+    #TODO later add it to the localFilters config
+    @statusFilterView = new TicketFilterView(
+      collection: @model.columns
+      ticketField: 'status'
+      viewState: @viewState
+      stateAttribute: 'columns'
+      position: 'center'
+      title: 'Status'
+    )
 
-    for filter in @config.localFilters || []
-        localFilterView = new TicketFilterView(ticketCollection: @ticketCollection, ticketField: filter.ticketField, viewState: @viewState, stateAttribute: filter.stateAttribute)
+    #adding localFilters
+    for filter in @model.localFilters || []
+        localFilterView = new TicketFilterView(
+          collection: @collection
+          ticketField: filter.ticketField
+          viewState: @viewState
+          stateAttribute: filter.stateAttribute
+          position: filter.position
+          title: filter.title
+        )
         @localFilterViews.push localFilterView
         @$el.append localFilterView.el
 
     @$el.append @filterView.el
     @$el.append @statusFilterView.el
 
-    @$el.append wrapperTemplate(@config.title)
+    @$el.append wrapperTemplate(@model.title)
 
     $wrapper = @$('.kanban-columns-wrapper')
 
-    for columnConfig in @config.columns
+    #adding columns
+    for columnConfig in @model.columns
       kanbanColumnConfig = {
-        columnConfig: columnConfig
+        model: columnConfig
         viewState: @viewState
-        ticketCollection: @ticketCollection
-        config: @config
+        collection: @collection
+        config: @model
       }
 
       view = new KanbanColumnView(kanbanColumnConfig)

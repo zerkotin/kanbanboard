@@ -16,26 +16,29 @@ exports.Router = class Router extends Backbone.Router
     'unassigned': 'unassigned'
 
   team: ->
-    @_browseToPage(KanbanBoardView, {config: KanbanConfig.teamViewConfig})
+    @_browseToPage(KanbanBoardView, {model: KanbanConfig.teamViewConfig})
 
   po: ->
-    @_browseToPage(KanbanBoardView, {config: KanbanConfig.poViewConfig})
+    @_browseToPage(KanbanBoardView, {model: KanbanConfig.poViewConfig})
 
   developer: ->
-    @_browseToPage(KanbanBoardView, {config: KanbanConfig.developerViewConfig})
+    @_browseToPage(KanbanBoardView, {model: KanbanConfig.developerViewConfig})
 
   tickets: ->
-    @_browseToPage(KanbanBoardView, {config: KanbanConfig.ticketViewConfig})
+    @_browseToPage(KanbanBoardView, {model: KanbanConfig.ticketViewConfig})
 
   unassigned: ->
-    @_browseToPage(KanbanBoardView, {config: KanbanConfig.unassignedViewConfig})
+    @_browseToPage(KanbanBoardView, {model: KanbanConfig.unassignedViewConfig})
 
 
   _browseToPage: (viewConstructor, viewOptions) ->
+    #adding navigation bar only on first load
+    #TODO move it to initialize
     unless @sideNavigationView
-          @sideNavigationView = new SideNavigationView(navigationItems: KanbanConfig.navigationItems, initSelectedPath: viewOptions.config.path)
+          @sideNavigationView = new SideNavigationView(collection: KanbanConfig.navigationItems, initSelectedPath: viewOptions.model.path)
           $('body').append @sideNavigationView.$el
 
+    #remove previous view and add the new one
     @currentView?.remove()
     @currentView = new viewConstructor(viewOptions)
     $('body').append @currentView.$el

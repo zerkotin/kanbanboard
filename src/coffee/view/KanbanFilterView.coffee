@@ -2,12 +2,6 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
 
   className: 'kanban-filter-view'
 
-  filters: null
-  $filters: []
-
-  $team: null
-  $key: null
-
   ticketCollection: null
 
   events:
@@ -15,7 +9,7 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
     'click .kanban-link': '_showFilters'
 
   initialize: (options) ->
-    {@ticketCollection, @filters} = options
+    {@ticketCollection} = options
 
     @listenTo @ticketCollection, 'sync', @_stopSpinner
     @render()
@@ -23,7 +17,7 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
   render: ->
     @$el.append editFilterTemplate()
 
-    for filter in @filters
+    for filter in @collection
       @$el.append filterTemplate(filter)
 
     @$el.append filterButtonTemplate()
@@ -33,7 +27,7 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
   _onFilterClick: ->
 
     params = {}
-    for filter in @filters
+    for filter in @collection
       params[filter.name] = @$(".#{filter.name}-input").val()
 
     @$('.fa-spinner').removeClass 'hidden'
@@ -50,7 +44,7 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
 
   _loadFromLocalStorage: ->
     hideFilters = false
-    for filter in @filters
+    for filter in @collection
       val = localStorage.getItem(filter.name)
       @$(".#{filter.name}-input").val(val)
       if val
@@ -67,6 +61,7 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
     @$('.kanban-link').hide()
 
   _hideFilters: ->
+    #TODO use multiple selectors
     @$('.kanban-label').hide()
     @$('.kanban-input').hide()
     @$('.kanban-link').show()

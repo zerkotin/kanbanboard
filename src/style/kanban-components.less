@@ -1,11 +1,10 @@
 .kanban-button {
   .unselectable;
-  font-size: 14px;
   padding: 5px 13px 5px 13px;
   text-align: center;
   .box-shadow-small;
   .gradient;
-  .border-radius(5px);
+  .border-radius(20px);
   color: @dark-blue;
 
   &:hover {
@@ -17,6 +16,21 @@
   &:active {
     color: lightgrey;
     .box-shadow-inner;
+  }
+}
+
+.clickable {
+  .unselectable;
+  color: @dark-blue;
+
+  &:hover {
+    color: @light-blue;
+    cursor: pointer;
+  }
+
+  &:active {
+    .box-shadow-inner;
+    color: lightgrey;
   }
 }
 
@@ -44,13 +58,11 @@
   padding: 5px 10px 5px 10px;
   width: 100px;
   color: grey;
-  font-size: 14px;
   .box-shadow-inner;
 }
 
 .kanban-label {
   .unselectable;
-  font-size: 14px;
   padding: 5px 10px 5px 10px;
   color: grey;
 }
