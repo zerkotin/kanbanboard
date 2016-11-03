@@ -42,7 +42,7 @@ template = (data, config) ->
   <div class="ticket-description" style="display: none">#{data.get('description')}</div>
   <div class="ticket-footer">
     <span class="ticket-owner">#{if data.get(config.nameField) then data.get(config.nameField).name else '---'}</span>
-    <span class="ticket-status">#{data.get('tracker').name}</span>
+    <span class="ticket-status">#{data.get('priority').name}</span>
   </div>
 
   """
