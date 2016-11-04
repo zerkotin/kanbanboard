@@ -31,15 +31,15 @@ exports.TicketFilterView = class TicketFilterView extends Backbone.View
     @$el.addClass @position
     @$el.append template(@title)
 
-    properties = @_retreiveAllValues()
+    filtersList = @_retreiveAllValues()
 
     data = {}
     data[@stateAttribute] = @allValues
     @viewState.set(data, {silent: true}) # silent only for startup
 
     $wrapper = @$('.items-wrapper')
-    for key of properties
-      $wrapper.append itemTemplate({id: key, name: properties[key]})
+    for item in filtersList
+      $wrapper.append itemTemplate(item)
 
     setTimeout(@_onMouseOut, 1000)
 
@@ -65,7 +65,18 @@ exports.TicketFilterView = class TicketFilterView extends Backbone.View
         stateValue.push value.id
 
     @allValues = stateValue
-    return properties
+
+    #making the map to a list and sorting
+    filtersList = []
+    for key of properties
+      filtersList.push({id: key, name: properties[key]})
+
+    filtersList.sort((a, b) ->
+      return -1 if a.name < b.name
+      return 1 if a.name > b.name
+      return 0
+    )
+    return filtersList
 
   _onFilterClick: (event) ->
     selectedFilter = @$('#'+event.target.id)
