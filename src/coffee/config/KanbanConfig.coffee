@@ -240,6 +240,15 @@ exports.KanbanConfig = {
     {path: 'developer', template: '<i class="fa fa-laptop" aria-hidden="true"></i>Developer'}
     {path: 'tickets', template: '<i class="fa fa-ticket" aria-hidden="true"></i>Tickets'}
     {path: 'unassigned', template: '<i class="fa fa-exclamation-circle" aria-hidden="true"></i>Unassigned'}
+    {path: 'detailed', template: '<i class="fa fa-exclamation-circle" aria-hidden="true"></i>Detailed'}
   ]
 
+  detailedViewConfig:
+    issuesUrl: '/specificissues'
+    path: 'detailed'
+    title: 'Detailed'
+    remoteFilters: [
+      {text: 'Key', name: 'key', type: 'password', description: 'Redmine API key'}
+      {text: 'Tickets', name: 'tickets', type: 'text', description: 'Comma separated tickets'}
+    ]
 }

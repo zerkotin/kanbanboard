@@ -1,6 +1,7 @@
 {KanbanBoardView} = require './view/KanbanBoardView'
 {KanbanConfig} = require './config/KanbanConfig'
 {SideNavigationView} = require './view/SideNavigationView'
+{DetailedView} = require './view/DetailedView'
 
 exports.Router = class Router extends Backbone.Router
 
@@ -14,6 +15,7 @@ exports.Router = class Router extends Backbone.Router
     'developer': 'developer'
     'tickets': 'tickets'
     'unassigned': 'unassigned'
+    'detailed': 'detailed'
 
   team: ->
     @_browseToPage(KanbanBoardView, {model: KanbanConfig.teamViewConfig})
@@ -29,6 +31,9 @@ exports.Router = class Router extends Backbone.Router
 
   unassigned: ->
     @_browseToPage(KanbanBoardView, {model: KanbanConfig.unassignedViewConfig})
+
+  detailed: ->
+    @_browseToPage(DetailedView, {model: KanbanConfig.detailedViewConfig})
 
 
   _browseToPage: (viewConstructor, viewOptions) ->

@@ -108,6 +108,7 @@ module.exports = (function (){
                 }).map(function(data){
                     return data.issue;
                 });
+                mapCustomFields(issues);
                 //returning an answer
                 res.json({issues: issues, config: config, total: issues.length});
             });
