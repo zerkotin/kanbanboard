@@ -48,7 +48,7 @@ exports.KanbanConfig = {
         colorStart: '#f6d2d2'
         id: 'removed',
         name: 'Feedback',
-        statuses: ['Feedback', 'Rejected']
+        statuses: ['Feedback', 'Rejected', 'Blocked']
       }
     ]
     ticketConfig:
@@ -99,7 +99,7 @@ exports.KanbanConfig = {
         colorStart: '#f6d2d2'
         id: 'removed',
         name: 'Feedback',
-        statuses: ['Feedback', 'Rejected']
+        statuses: ['Feedback', 'Rejected', 'Blocked']
       }
     ]
     ticketConfig:
@@ -143,7 +143,7 @@ exports.KanbanConfig = {
         colorStart: '#f6d2d2'
         id: 'removed',
         name: 'Feedback',
-        statuses: ['Feedback', 'Rejected']
+        statuses: ['Feedback', 'Rejected', 'Blocked']
       }
     ]
     ticketConfig:
@@ -228,7 +228,7 @@ exports.KanbanConfig = {
         colorStart: '#f6d2d2'
         id: 'removed'
         name: 'Feedback'
-        statuses: ['Feedback', 'Rejected']
+        statuses: ['Feedback', 'Rejected', 'Blocked']
       }
     ]
     ticketConfig:
