@@ -49,10 +49,10 @@ wrapperTemplate = (boardName)->
 
 tableTemplate = ->
   """
-  <table><thead><th>Ticket</th><th>Team</th><th>Estimated Hours</th></thead><tbody></tbody></table>
+  <table><thead><th>Ticket</th><th>Team</th><th>Subject</th><th>Status</th><th>Estimated Hours</th></thead><tbody></tbody></table>
   """
 
 ticketTemplate = (data) ->
   """
-  <tr class='ticket'><td class='ticket-num'>#{data.get('id')}</td><td class='team'>#{data.get('cf_Team') || ''}</td><td class='ticket-time'>#{data.get('estimated_hours') || '0'}</td></tr>
+  <tr class='ticket'><td>#{data.get('id')}</td><td>#{data.get('cf_Team') || ''}</td><td>#{data.get('subject')}</td><td>#{data.get('status').name}</td><td>#{data.get('estimated_hours') || '0'}</td></tr>
   """
