@@ -240,7 +240,7 @@ exports.KanbanConfig = {
     {path: 'developer', template: '<i class="fa fa-laptop" aria-hidden="true"></i>Developer'}
     {path: 'tickets', template: '<i class="fa fa-ticket" aria-hidden="true"></i>Tickets'}
     {path: 'unassigned', template: '<i class="fa fa-exclamation-circle" aria-hidden="true"></i>Unassigned'}
-    {path: 'detailed', template: '<i class="fa fa-exclamation-circle" aria-hidden="true"></i>Detailed'}
+    {path: 'detailed', template: '<i class="fa fa-list-ol" aria-hidden="true"></i>Detailed'}
   ]
 
   detailedViewConfig:
