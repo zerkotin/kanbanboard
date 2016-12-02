@@ -182,6 +182,13 @@ exports.KanbanConfig = {
         name: 'Resolved',
         statuses: ['Resolved']
       }
+      {
+        colorEnd: '#f37f7f',
+        colorStart: '#f6d2d2'
+        id: 'removed',
+        name: 'Feedback',
+        statuses: ['Feedback', 'Rejected', 'Blocked']
+      }
     ]
     ticketConfig:
       nameField: 'author'
