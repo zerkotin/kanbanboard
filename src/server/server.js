@@ -1,7 +1,11 @@
 //thats our server, it includes a simple file handler and proxy to our redmine queries
 var express = require('express');
-var queries = require('./redmine-queries.js');
 var app = express();
+
+var PropertiesReader = require('properties-reader');
+var properties = PropertiesReader('./kanbanboard.properties');
+
+var queries = require('./redmine-queries.js');
 
 mapRedmineQueries(); //maps redmine queries to http requests
 
@@ -28,7 +32,8 @@ function configSimpleWebServer() {
   });
 
   //runs the web server
-  app.listen(9090, function() {
-    console.log('Server running on port 9090');
+  var port = properties.get('kanbanboard.http.port');
+  app.listen(port, function() {
+    console.log('Server running on port '+port);
   });
 }
