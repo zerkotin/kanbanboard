@@ -1,6 +1,9 @@
 //credits: code@uvwxy.de
 var request = require('request');
 
+var PropertiesReader = require('properties-reader');
+var properties = PropertiesReader('./kanbanboard.properties');
+
 module.exports = (function (){
 
     //Config constants
