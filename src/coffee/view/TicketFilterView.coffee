@@ -5,10 +5,12 @@ exports.TicketFilterView = class TicketFilterView extends Backbone.View
   viewState: null
   stateAttribute: null
   animating: false
+  lastAnimation: null
   ticketField: null
   position: null
   title: null
   allValues: null
+  sort: null
 
   events:
     'click .filter-item': '_onFilterClick'
@@ -18,7 +20,7 @@ exports.TicketFilterView = class TicketFilterView extends Backbone.View
     'mouseleave': '_onMouseOut'
 
   initialize: (options) ->
-    {@ticketField, @viewState, @stateAttribute, @position, @title} = options
+    {@ticketField, @viewState, @stateAttribute, @position, @title, @sort} = options
 
     if @collection instanceof Backbone.Collection
       @listenTo @collection, 'sync', @render
@@ -71,11 +73,12 @@ exports.TicketFilterView = class TicketFilterView extends Backbone.View
     for key of properties
       filtersList.push({id: key, name: properties[key]})
 
-    filtersList.sort((a, b) ->
-      return -1 if a.name < b.name
-      return 1 if a.name > b.name
-      return 0
-    )
+    if @sort
+      filtersList.sort((a, b) ->
+        return -1 if a.name < b.name
+        return 1 if a.name > b.name
+        return 0
+      )
     return filtersList
 
   _onFilterClick: (event) ->
@@ -89,15 +92,28 @@ exports.TicketFilterView = class TicketFilterView extends Backbone.View
       @viewState.set(@stateAttribute, columns.concat [event.target.id])
 
   _onMouseOver: =>
-    return if @animating
+    if @animating
+      @lastAnimation = 'hover'
+      return
+
     @animating = true
-    @$el.animate({right: '-3px'}, 200, 'swing', => @animating = false)
+    @$el.animate({right: '-3px'}, 200, 'swing', =>
+      @animating = false
+      if @lastAnimation is 'leave'
+        @lastAnimation = null
+        @_onMouseOut()
+    )
 
   _onMouseOut: =>
-    return if @animating
+    if @animating
+      @lastAnimation = 'leave'
+      return
+
     @animating = true
     move = @$el.width() - 20
-    @$el.animate({right: "-#{move}px"}, 200, 'swing', => @animating = false)
+    @$el.animate({right: "-#{move}px"}, 200, 'swing', =>
+      @animating = false
+    )
 
   _selectAll: ->
     @$('.filter-item').addClass 'selected'

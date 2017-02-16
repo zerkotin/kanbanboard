@@ -35,6 +35,7 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
       stateAttribute: 'columns'
       position: 'center'
       title: 'Status'
+      sort: false
     )
 
     #adding localFilters
@@ -46,6 +47,7 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
           stateAttribute: filter.stateAttribute
           position: filter.position
           title: filter.title
+          sort: true
         )
         @localFilterViews.push localFilterView
         @$el.append localFilterView.el

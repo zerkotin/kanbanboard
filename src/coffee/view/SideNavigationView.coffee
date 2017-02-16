@@ -3,6 +3,7 @@ exports.SideNavigationView = class SideNavigationView extends Backbone.View
   className: 'side-navigation-view'
 
   animating: false
+  lastAnimation: null
 
   events:
     'click .navigation-item': '_onNavigate'
@@ -28,15 +29,28 @@ exports.SideNavigationView = class SideNavigationView extends Backbone.View
     Backbone.history.navigate(navigationPath, {trigger: true})
 
   _onMouseOver: ->
-    return if @animating
+    if @animating
+      @lastAnimation = 'hover'
+      return
+
     @animating = true
-    @$el.animate({left: '-3px'}, 200, 'swing', => @animating = false)
+    @$el.animate({left: '-3px'}, 200, 'swing', =>
+      @animating = false
+      if @lastAnimation is 'leave'
+        @lastAnimation = null
+        @_onMouseOut()
+    )
 
   _onMouseOut: =>
-    return if @animating
+    if @animating
+      @lastAnimation = 'leave'
+      return
+
     @animating = true
     move = @$el.width() - 20
-    @$el.animate({left: "-#{move}px"}, 200, 'swing', => @animating = false)
+    @$el.animate({left: "-#{move}px"}, 200, 'swing', =>
+      @animating = false
+    )
 
 itemTemplate = (config) ->
   """
