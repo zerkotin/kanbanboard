@@ -8,6 +8,10 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
   viewState: null
   ticketViews: []
 
+  events:
+    'dragover .kanban-column-content': '_handleDrag'
+    'drop .kanban-column-content': '_handleDrop'
+
   initialize: (options) ->
     {@config, @viewState} = options
     @listenTo @collection, 'sync', @_renderTickets
@@ -62,6 +66,17 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
 
     return filteredTickets
 
+  _handleDrag: (event) ->
+    if event.preventDefault
+      event.preventDefault()
+
+  _handleDrop: (event) ->
+    if event.stopPropagation
+      event.stopPropagation()
+
+    ticket = event.originalEvent.dataTransfer.getData('application/json')
+    console.dir ticket #debug
+    #TODO find the model in the collection and change the status
 
   _columnsChanged: ->
     if @model.id in @viewState.get('columns')

@@ -9,9 +9,14 @@ exports.TicketView = class TicketView extends Backbone.View
   viewState: null
   config: null
 
+  attributes:
+    draggable: true
+
   events:
     'click .ticket-id': '_onTicketClick'
     'click .ticket-title': '_onTitleClick'
+    'dragstart': '_handleDragStart'
+
 
   initialize: (options) ->
     {@ticketConfig, @viewState, @config} = options
@@ -31,6 +36,12 @@ exports.TicketView = class TicketView extends Backbone.View
     else
       @$('.ticket-description').slideDown()
       @$('.expander').addClass 'expanded'
+
+  _handleDragStart: (event) ->
+    console.log(@model) #debug
+    event.originalEvent.dataTransfer.setData('application/json', JSON.stringify @model.attributes)
+    event.originalEvent.dataTransfer.effectAllowed = 'move'
+
 
 
 template = (data, config) ->
