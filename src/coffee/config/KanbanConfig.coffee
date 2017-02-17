@@ -16,38 +16,43 @@ exports.KanbanConfig = {
     ]
     columns: [
       {
-        colorEnd: '#75a7f1',
+        colorEnd: '#75a7f1'
         colorStart: '#d4e3fa'
-        id: 'new',
-        name: 'New',
+        id: 'new'
+        name: 'New'
+        statusId: 7
         statuses: ['New', 'Queued ']
       }
       {
-        colorEnd: '#7fe3f3',
+        colorEnd: '#7fe3f3'
         colorStart: '#e1fafe'
-        id: 'todo',
-        name: 'To Do',
+        id: 'todo'
+        name: 'To Do'
+        statusId: 8
         statuses: ['Groomed ', 'Committed ']
       }
       {
-        colorEnd: 'orange',
+        colorEnd: 'orange'
         colorStart: '#ffecc8'
-        id: 'inprogress',
-        name: 'In Progress...',
+        id: 'inprogress'
+        name: 'In Progress...'
+        statusId: 2
         statuses: ['In Progress']
       }
       {
-        colorEnd: '#8ac383',
+        colorEnd: '#8ac383'
         colorStart: '#daffd5'
-        id: 'resolved',
-        name: 'Resolved',
+        id: 'resolved'
+        name: 'Resolved'
+        statusId: 3
         statuses: ['Resolved']
       }
       {
-        colorEnd: '#f37f7f',
+        colorEnd: '#f37f7f'
         colorStart: '#f6d2d2'
-        id: 'removed',
-        name: 'Feedback',
+        id: 'removed'
+        name: 'Feedback'
+        statusId: 4
         statuses: ['Feedback', 'Rejected', 'Blocked']
       }
     ]
@@ -67,38 +72,43 @@ exports.KanbanConfig = {
     ]
     columns: [
       {
-        colorEnd: '#75a7f1',
+        colorEnd: '#75a7f1'
         colorStart: '#d4e3fa'
-        id: 'new',
-        name: 'New',
+        id: 'new'
+        name: 'New'
+        statusId: 7
         statuses: ['New', 'Queued ']
       }
       {
-        colorEnd: '#7fe3f3',
+        colorEnd: '#7fe3f3'
         colorStart: '#e1fafe'
-        id: 'todo',
-        name: 'To Do',
+        id: 'todo'
+        name: 'To Do'
+        statusId: 8
         statuses: ['Groomed ', 'Committed ']
       }
       {
-        colorEnd: 'orange',
+        colorEnd: 'orange'
         colorStart: '#ffecc8'
-        id: 'inprogress',
-        name: 'In Progress...',
+        id: 'inprogress'
+        name: 'In Progress...'
+        statusId: 2
         statuses: ['In Progress']
       }
       {
-        colorEnd: '#8ac383',
+        colorEnd: '#8ac383'
         colorStart: '#daffd5'
-        id: 'resolved',
-        name: 'Resolved',
+        id: 'resolved'
+        name: 'Resolved'
+        statusId: 3
         statuses: ['Resolved']
       }
       {
-        colorEnd: '#f37f7f',
+        colorEnd: '#f37f7f'
         colorStart: '#f6d2d2'
-        id: 'removed',
-        name: 'Feedback',
+        id: 'removed'
+        name: 'Feedback'
+        statusId: 4
         statuses: ['Feedback', 'Rejected', 'Blocked']
       }
     ]
@@ -118,31 +128,35 @@ exports.KanbanConfig = {
     ]
     columns: [
       {
-        colorEnd: '#75a7f1',
+        colorEnd: '#75a7f1'
         colorStart: '#d4e3fa'
-        id: 'backlog',
-        name: 'Backlog',
+        id: 'backlog'
+        name: 'Backlog'
+        statusId: 7
         statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']
       }
       {
-        colorEnd: 'orange',
+        colorEnd: 'orange'
         colorStart: '#ffecc8'
-        id: 'inprogress',
-        name: 'In Progress...',
+        id: 'inprogress'
+        name: 'In Progress...'
+        statusId: 2
         statuses: ['In Progress']
       }
       {
-        colorEnd: '#8ac383',
+        colorEnd: '#8ac383'
         colorStart: '#daffd5'
-        id: 'resolved',
-        name: 'Resolved',
+        id: 'resolved'
+        name: 'Resolved'
+        statusId: 3
         statuses: ['Resolved']
       }
       {
-        colorEnd: '#f37f7f',
+        colorEnd: '#f37f7f'
         colorStart: '#f6d2d2'
-        id: 'removed',
-        name: 'Feedback',
+        id: 'removed'
+        name: 'Feedback'
+        statusId: 4
         statuses: ['Feedback', 'Rejected', 'Blocked']
       }
     ]
@@ -162,31 +176,35 @@ exports.KanbanConfig = {
     ]
     columns: [
       {
-        colorEnd: '#75a7f1',
+        colorEnd: '#75a7f1'
         colorStart: '#d4e3fa'
-        id: 'backlog',
-        name: 'Backlog',
+        id: 'backlog'
+        name: 'Backlog'
+        statusId: 7
         statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']
       }
       {
-        colorEnd: 'orange',
+        colorEnd: 'orange'
         colorStart: '#ffecc8'
-        id: 'inprogress',
-        name: 'In Progress...',
+        id: 'inprogress'
+        name: 'In Progress...'
+        statusId: 2
         statuses: ['In Progress']
       }
       {
-        colorEnd: '#8ac383',
+        colorEnd: '#8ac383'
         colorStart: '#daffd5'
-        id: 'resolved',
-        name: 'Resolved',
+        id: 'resolved'
+        name: 'Resolved'
+        statusId: 3
         statuses: ['Resolved']
       }
       {
-        colorEnd: '#f37f7f',
+        colorEnd: '#f37f7f'
         colorStart: '#f6d2d2'
-        id: 'removed',
-        name: 'Feedback',
+        id: 'removed'
+        name: 'Feedback'
+        statusId: 4
         statuses: ['Feedback', 'Rejected', 'Blocked']
       }
     ]
@@ -207,6 +225,7 @@ exports.KanbanConfig = {
         colorStart: '#d4e3fa'
         id: 'backlog'
         name: 'Backlog'
+        statusId: 7
         statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']
       }
       {
@@ -214,6 +233,7 @@ exports.KanbanConfig = {
         colorStart: '#ffecc8'
         id: 'inprogress'
         name: 'In Progress...'
+        statusId: 2
         statuses: ['In Progress']
       }
       {
@@ -221,6 +241,7 @@ exports.KanbanConfig = {
         colorStart: '#daffd5'
         id: 'resolved'
         name: 'Resolved'
+        statusId: 3
         statuses: ['Resolved']
       }
       {
@@ -228,6 +249,7 @@ exports.KanbanConfig = {
         colorStart: '#efefef'
         id: 'closed'
         name: 'Closed'
+        statusId: 5
         statuses: ['Closed']
       }
       {
@@ -235,6 +257,7 @@ exports.KanbanConfig = {
         colorStart: '#f6d2d2'
         id: 'removed'
         name: 'Feedback'
+        statusId: 4
         statuses: ['Feedback', 'Rejected', 'Blocked']
       }
     ]

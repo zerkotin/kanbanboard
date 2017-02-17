@@ -4,7 +4,6 @@
 {TicketCollection} = require '../model/TicketCollection'
 {TicketFilterView} = require './TicketFilterView'
 
-#TODO add drag and drop and sync the collection
 exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
 
   className: 'kanban-board-view'
@@ -24,7 +23,11 @@ exports.KanbanBoardView = class KanbanBoardView extends Backbone.View
     @render()
 
   render: ->
-    @filterView = new KanbanFilterView(ticketCollection: @collection, collection: @model.remoteFilters)
+    @filterView = new KanbanFilterView(
+      ticketCollection: @collection
+      collection: @model.remoteFilters
+      viewState: @viewState
+    )
 
     #filter with static collection
     #TODO later add it to the localFilters config

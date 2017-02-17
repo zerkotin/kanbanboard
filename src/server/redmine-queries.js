@@ -64,6 +64,13 @@ module.exports = (function () {
       redmine.query(req, res, remoteFilters, localFilters, false);
     }
 
+    function setstatus(req, res) {
+      var remoteFilters = {
+          key: req.body.key,
+      }
+      redmine.setstatus(req, res, remoteFilters);
+    }
+
 
     //this is what we expose to queries
     return queries = {
@@ -71,7 +78,8 @@ module.exports = (function () {
         developerIssues: developerIssues,
         poIssues: poIssues,
         specificIssues: specificIssues,
-        unassignedIssues: unassignedIssues
+        unassignedIssues: unassignedIssues,
+        setstatus: setstatus
     };
 
 })();

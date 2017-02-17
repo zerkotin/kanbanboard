@@ -1,6 +1,8 @@
 //thats our server, it includes a simple file handler and proxy to our redmine queries
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
+app.use(bodyParser.json());
 
 var PropertiesReader = require('properties-reader');
 var properties = PropertiesReader('./kanbanboard.properties');
@@ -17,6 +19,7 @@ function mapRedmineQueries() {
   app.get('/poissues', queries.poIssues);
   app.get('/specificissues', queries.specificIssues);
   app.get('/unassignedissues', queries.unassignedIssues);
+  app.put('/setstatus', queries.setstatus)
 
 }
 

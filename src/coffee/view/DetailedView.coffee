@@ -6,17 +6,18 @@ exports.DetailedView = class DetailedView extends Backbone.View
   className: 'detailed-view'
 
   filterView: null
+  viewState: null
 
   initialize: (options) ->
     #{} = options
     @collection = new TicketCollection(null, {url: @model.issuesUrl})
-
+    @viewState = new Backbone.Model
     @listenTo @collection, 'sync', @_renderTickets
 
     @render()
 
   render: ->
-    @filterView = new KanbanFilterView(ticketCollection: @collection, collection: @model.remoteFilters)
+    @filterView = new KanbanFilterView(ticketCollection: @collection, collection: @model.remoteFilters, viewState: @viewState)
 
     @$el.append @filterView.el
     @$el.append wrapperTemplate(@model.title)

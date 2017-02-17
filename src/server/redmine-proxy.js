@@ -8,7 +8,7 @@ module.exports = (function (){
 
     //Config constants
     var config = {
-      redmineRoot: 'http://'+properties.get('redmine.api.url')+'/',
+      redmineRoot: 'https://'+properties.get('redmine.api.url')+'/',
       redmineHost: properties.get('redmine.api.url')
     };
 
@@ -165,11 +165,39 @@ module.exports = (function (){
         }
     }
 
+    function setstatus(req, res, remoteFilters) {
+
+      function callback(error, response, data) {
+        if(!error && response.statusCode === 200) {
+          res.json({data: 'success'});
+        }
+        else {
+          res.json({error: error});
+        }
+      }
+
+      if(req.body && req.body.key){
+        var path = 'issues/'+req.body.id+'.json'
+        var url = buildUrl(remoteFilters, path);
+        request({
+          url: url,
+          method: 'PUT',
+          agentOptions: {rejectUnauthorized: false},
+          //followAllRedirects: true,
+          json: {issue:{status_id: req.body.statusId}}
+        }, callback);
+      }
+      else {
+        res.json({error: 'API key is missing'});
+      }
+    }
+
     //the API to expose
     return {
         config: config,
         query: redmineAllPagesQuery,
-        multipleQueries: redmineMultipleIssuesQuery
+        multipleQueries: redmineMultipleIssuesQuery,
+        setstatus: setstatus
     };
 
 })();

@@ -11,6 +11,7 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
   events:
     'dragover .kanban-column-content': '_handleDrag'
     'drop .kanban-column-content': '_handleDrop'
+    #TODO drag enter and drag leave with classes
 
   initialize: (options) ->
     {@config, @viewState} = options
@@ -74,9 +75,19 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
     if event.stopPropagation
       event.stopPropagation()
 
-    ticket = event.originalEvent.dataTransfer.getData('application/json')
-    console.dir ticket #debug
-    #TODO find the model in the collection and change the status
+    ticket = JSON.parse event.originalEvent.dataTransfer.getData('application/json')
+
+    ticketStatus = new Backbone.Model(
+      id: ticket.id
+      statusId: @model.statusId
+      key: @viewState.get 'key'
+    )
+    ticketStatus.save({},{url: 'setstatus'})
+    #TODO 1. update the ticket status and rerender all columns
+    #TODO 2. add all drag and drop events to fix safari
+    #TODO 3. make nice styling for drag
+    #TODO 4. show error message if fail
+
 
   _columnsChanged: ->
     if @model.id in @viewState.get('columns')

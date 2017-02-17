@@ -3,13 +3,14 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
   className: 'kanban-filter-view'
 
   ticketCollection: null
+  viewState: null
 
   events:
     'click .kanban-button': '_onFilterClick'
     'click .kanban-link': '_showFilters'
 
   initialize: (options) ->
-    {@ticketCollection} = options
+    {@ticketCollection, @viewState} = options
 
     @listenTo @ticketCollection, 'sync', @_stopSpinner
     @render()
@@ -40,12 +41,15 @@ exports.KanbanFilterView = class KanbanFilterView extends Backbone.View
   _saveToLocalStorage: (params) ->
     for key of params
       localStorage.setItem(key, params[key])
+      @viewState.set(key, params[key])
     return @
 
   _loadFromLocalStorage: ->
     hideFilters = false
     for filter in @collection
       val = localStorage.getItem(filter.name)
+      @viewState.set(filter.name, val)
+
       @$(".#{filter.name}-input").val(val)
       if val
         hideFilters = true
