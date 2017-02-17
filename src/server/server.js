@@ -19,8 +19,7 @@ function mapRedmineQueries() {
   app.get('/poissues', queries.poIssues);
   app.get('/specificissues', queries.specificIssues);
   app.get('/unassignedissues', queries.unassignedIssues);
-  app.put('/setstatus', queries.setstatus)
-
+  app.put('/setstatus', queries.setstatus);
 }
 
 function configSimpleWebServer() {
