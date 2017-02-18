@@ -10,12 +10,16 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
 
   events:
     'dragover .kanban-column-content': '_handleDrag'
+    'dragend .kanban-column-content': '_handleDragEnd'
     'drop .kanban-column-content': '_handleDrop'
+    'dragenter .kanban-column-content': '_handleDragEnter'
+    'dragleave .kanban-column-content': '_handleDragLeave'
+
     #TODO drag enter and drag leave with classes
 
   initialize: (options) ->
     {@config, @viewState} = options
-    @listenTo @collection, 'sync', @_renderTickets
+    @listenTo @collection, 'sync change', @_renderTickets
     @listenTo @viewState, 'change:columns', @_columnsChanged
 
     for filter in @config.localFilters || []
@@ -40,19 +44,22 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
     filteredTickets = @_getFilteredTickets()
 
     for ticket in filteredTickets
-      view = new TicketView(
-        ticketConfig: @config.ticketConfig
-        model: ticket
-        serverConfig: @collection.config
-        viewState: @viewState
-        config: @config
-      )
-      @ticketViews.push(view)
-      $ticketsEl.append view.el
+      @_createTicketView(ticket, $ticketsEl)
 
     @$('.counter').html('('+filteredTickets.length+')')
 
     return @
+
+  _createTicketView: (ticketModel, $ticketsContainer)->
+    view = new TicketView(
+      ticketConfig: @config.ticketConfig
+      model: ticketModel
+      serverConfig: @collection.config
+      viewState: @viewState
+      config: @config
+    )
+    @ticketViews.push(view)
+    $ticketsContainer.append view.el
 
   _getFilteredTickets: ->
     filteredTickets = @collection.models.filter((ticket) =>
@@ -68,25 +75,51 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
     return filteredTickets
 
   _handleDrag: (event) ->
-    if event.preventDefault
-      event.preventDefault()
+    event.preventDefault()
+    return false
+
+  _handleDragEnd: (event) ->
+    event.stopPropagation()
+
+  _handleDragEnter: ->
+    $('.kanban-column-content').removeClass('dragover')
+    @$('.kanban-column-content').addClass('dragover')
+
+    event.stopPropagation();
+    event.preventDefault();
+    return false
+
+  _handleDragLeave: ->
+    event.stopPropagation();
+    event.preventDefault();
+    return false
 
   _handleDrop: (event) ->
-    if event.stopPropagation
-      event.stopPropagation()
+    event.stopPropagation()
 
-    ticket = JSON.parse event.originalEvent.dataTransfer.getData('application/json')
+    $ticketsEl = @$('.kanban-column-content')
+    $ticketsEl.removeClass('dragover')
+
+    ticket = @viewState.get('dragTicketData')
 
     ticketStatus = new Backbone.Model(
       id: ticket.id
       statusId: @model.statusId
       key: @viewState.get 'key'
     )
-    ticketStatus.save({},{url: 'setstatus'})
-    #TODO 1. update the ticket status and rerender all columns
-    #TODO 2. add all drag and drop events to fix safari
-    #TODO 3. make nice styling for drag
-    #TODO 4. show error message if fail
+    #TODO handle success and error
+    ticketStatus.save({},{
+      url: 'setstatus'
+      success: ->
+        #TODO stop a spinner
+        return null
+      error: ->
+        #TODO show error message
+        return null
+    })
+
+    originalTicket = @collection.findWhere({'id': ticket.id})
+    originalTicket.set('status', {id: @model.statusId, name: @model.statusName})
 
 
   _columnsChanged: ->

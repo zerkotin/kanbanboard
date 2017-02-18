@@ -192,11 +192,32 @@ module.exports = (function (){
       }
     }
 
+    function simpleQuery(req, res, path, remoteFilters) {
+      function callback(error, response, data) {
+        if(!error && response.statusCode === 200) {
+          res.json({data: data});
+        }
+        else {
+          res.json({error: error});
+        }
+      }
+
+      if(req.query && req.query.key) {
+          var url = buildUrl(remoteFilters, path);
+          request({url: url, json: true, agentOptions: {rejectUnauthorized: false}}, callback);
+      }
+      else {
+          res.json({error: 'API key is missing'});
+      }
+
+    }
+
     //the API to expose
     return {
         config: config,
         query: redmineAllPagesQuery,
         multipleQueries: redmineMultipleIssuesQuery,
+        simpleQuery: simpleQuery,
         setstatus: setstatus
     };
 

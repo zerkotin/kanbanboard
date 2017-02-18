@@ -71,6 +71,13 @@ module.exports = (function () {
       redmine.setstatus(req, res, remoteFilters);
     }
 
+    function statuses(req, res) {
+      var remoteFilters = {
+          key: req.query.key
+      };
+      redmine.simpleQuery(req, res, 'issue_statuses.json', remoteFilters);
+    }
+
 
     //this is what we expose to queries
     return queries = {
@@ -79,7 +86,8 @@ module.exports = (function () {
         poIssues: poIssues,
         specificIssues: specificIssues,
         unassignedIssues: unassignedIssues,
-        setstatus: setstatus
+        setstatus: setstatus,
+        statuses: statuses
     };
 
 })();

@@ -38,9 +38,8 @@ exports.TicketView = class TicketView extends Backbone.View
       @$('.expander').addClass 'expanded'
 
   _handleDragStart: (event) ->
-    event.originalEvent.dataTransfer.setData('application/json', JSON.stringify @model.attributes)
+    @viewState.set('dragTicketData', @model.attributes)
     event.originalEvent.dataTransfer.effectAllowed = 'move'
-
 
 
 template = (data, config) ->

@@ -21,6 +21,7 @@ exports.KanbanConfig = {
         id: 'new'
         name: 'New'
         statusId: 7
+        statusName: 'Queued '
         statuses: ['New', 'Queued ']
       }
       {
@@ -29,6 +30,7 @@ exports.KanbanConfig = {
         id: 'todo'
         name: 'To Do'
         statusId: 8
+        statusName: 'Groomed '
         statuses: ['Groomed ', 'Committed ']
       }
       {
@@ -37,6 +39,7 @@ exports.KanbanConfig = {
         id: 'inprogress'
         name: 'In Progress...'
         statusId: 2
+        statusName: 'In Progress'
         statuses: ['In Progress']
       }
       {
@@ -45,6 +48,7 @@ exports.KanbanConfig = {
         id: 'resolved'
         name: 'Resolved'
         statusId: 3
+        statusName: 'Resolved'
         statuses: ['Resolved']
       }
       {
@@ -53,6 +57,7 @@ exports.KanbanConfig = {
         id: 'removed'
         name: 'Feedback'
         statusId: 4
+        statusName: 'Feedback'
         statuses: ['Feedback', 'Rejected', 'Blocked']
       }
     ]
@@ -77,6 +82,7 @@ exports.KanbanConfig = {
         id: 'new'
         name: 'New'
         statusId: 7
+        statusName: 'Queued '
         statuses: ['New', 'Queued ']
       }
       {
@@ -85,6 +91,7 @@ exports.KanbanConfig = {
         id: 'todo'
         name: 'To Do'
         statusId: 8
+        statusName: 'Groomed '
         statuses: ['Groomed ', 'Committed ']
       }
       {
@@ -93,6 +100,7 @@ exports.KanbanConfig = {
         id: 'inprogress'
         name: 'In Progress...'
         statusId: 2
+        statusName: 'In Progress'
         statuses: ['In Progress']
       }
       {
@@ -101,6 +109,7 @@ exports.KanbanConfig = {
         id: 'resolved'
         name: 'Resolved'
         statusId: 3
+        statusName: 'Resolved'
         statuses: ['Resolved']
       }
       {
@@ -109,6 +118,7 @@ exports.KanbanConfig = {
         id: 'removed'
         name: 'Feedback'
         statusId: 4
+        statusName: 'Feedback'
         statuses: ['Feedback', 'Rejected', 'Blocked']
       }
     ]
@@ -133,6 +143,7 @@ exports.KanbanConfig = {
         id: 'backlog'
         name: 'Backlog'
         statusId: 7
+        statusName: 'Queued '
         statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']
       }
       {
@@ -141,6 +152,7 @@ exports.KanbanConfig = {
         id: 'inprogress'
         name: 'In Progress...'
         statusId: 2
+        statusName: 'In Progress'
         statuses: ['In Progress']
       }
       {
@@ -149,6 +161,7 @@ exports.KanbanConfig = {
         id: 'resolved'
         name: 'Resolved'
         statusId: 3
+        statusName: 'Resolved'
         statuses: ['Resolved']
       }
       {
@@ -157,6 +170,7 @@ exports.KanbanConfig = {
         id: 'removed'
         name: 'Feedback'
         statusId: 4
+        statusName: 'Feedback'
         statuses: ['Feedback', 'Rejected', 'Blocked']
       }
     ]
@@ -181,6 +195,7 @@ exports.KanbanConfig = {
         id: 'backlog'
         name: 'Backlog'
         statusId: 7
+        statusName: 'Queued '
         statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']
       }
       {
@@ -189,6 +204,7 @@ exports.KanbanConfig = {
         id: 'inprogress'
         name: 'In Progress...'
         statusId: 2
+        statusName: 'In Progress'
         statuses: ['In Progress']
       }
       {
@@ -197,6 +213,7 @@ exports.KanbanConfig = {
         id: 'resolved'
         name: 'Resolved'
         statusId: 3
+        statusName: 'Resolved'
         statuses: ['Resolved']
       }
       {
@@ -205,6 +222,7 @@ exports.KanbanConfig = {
         id: 'removed'
         name: 'Feedback'
         statusId: 4
+        statusName: 'Feedback'
         statuses: ['Feedback', 'Rejected', 'Blocked']
       }
     ]
@@ -226,6 +244,7 @@ exports.KanbanConfig = {
         id: 'backlog'
         name: 'Backlog'
         statusId: 7
+        statusName: 'Queued '
         statuses: ['New', 'Queued ', 'Groomed ', 'Committed ']
       }
       {
@@ -234,6 +253,7 @@ exports.KanbanConfig = {
         id: 'inprogress'
         name: 'In Progress...'
         statusId: 2
+        statusName: 'In Progress'
         statuses: ['In Progress']
       }
       {
@@ -242,6 +262,7 @@ exports.KanbanConfig = {
         id: 'resolved'
         name: 'Resolved'
         statusId: 3
+        statusName: 'Resolved'
         statuses: ['Resolved']
       }
       {
@@ -250,6 +271,7 @@ exports.KanbanConfig = {
         id: 'closed'
         name: 'Closed'
         statusId: 5
+        statusName: 'Closed'
         statuses: ['Closed']
       }
       {
@@ -258,6 +280,7 @@ exports.KanbanConfig = {
         id: 'removed'
         name: 'Feedback'
         statusId: 4
+        statusName: 'Feedback'
         statuses: ['Feedback', 'Rejected', 'Blocked']
       }
     ]
