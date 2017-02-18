@@ -25,6 +25,7 @@ exports.TicketView = class TicketView extends Backbone.View
 
   render: ->
     @$el.append(template(@model, @ticketConfig))
+    @$('.ticket-status').addClass(@model.get('priority').name.toLowerCase()+'-priority')
 
   _onTicketClick: ->
     window.open(KanbanConfig.getRedmineIssueUrl(@model.get('id')))
