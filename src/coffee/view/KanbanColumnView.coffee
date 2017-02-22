@@ -76,6 +76,7 @@ exports.KanbanColumnView = class KanbanColumnView extends Backbone.View
 
   _handleDrag: (event) ->
     event.preventDefault()
+    event.originalEvent.dataTransfer.dropEffect = 'move'
     return false
 
   _handleDragEnd: (event) ->

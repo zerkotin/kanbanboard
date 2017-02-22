@@ -40,6 +40,7 @@ exports.TicketView = class TicketView extends Backbone.View
 
   _handleDragStart: (event) ->
     @viewState.set('dragTicketData', @model.attributes)
+    event.originalEvent.dataTransfer.setData('application/json', @model.attributes) #for firefox support
     event.originalEvent.dataTransfer.effectAllowed = 'move'
 
 
