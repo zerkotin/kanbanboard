@@ -3,3 +3,5 @@
 /_temp
 /bower_components
 /build
+
+src/.DS_Store
