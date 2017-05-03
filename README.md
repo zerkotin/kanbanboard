@@ -62,6 +62,7 @@ When developing you can run `grunt watch` and it will automatically transpile th
 - Go to my account,  
 - and on the right panel, press `Show API Key`
 - Copy paste it to the key field in Kanbanboard
+
 your'e all set, click `refresh` and you'll have your tickets.
 
 
