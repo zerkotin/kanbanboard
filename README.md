@@ -1,3 +1,25 @@
+# Kanbanboard
+
+Kanbanboard integrates with Redmine and provides a better View and better UI experience.
+
+kanbanboard is based on:
+
+* Backbone
+* Underscode
+* JQuery
+* CoffeeScript
+* NodeJS
+* Express
+* Grunt
+* Browserify
+* Less
+* FontAwesome
+
+take a look at the wonderful examples of CoffeesScript and Backbone with advanced stylesheets, responsive design without any framework interrupting, and a super lightweight and fast performing application.
+
+kanbanboard is built with grunt and includes many grunt modules and features.
+take a look at Gruntfile.coffee for interesting examples...
+
 # kanbanboard installation notes
 
 this is a kanbanboard integrates with redmine API to provide a better view/dashboard.
@@ -44,5 +66,3 @@ to get your redmine api key:
 login to redmine, go to my account,
 and on the right panel, press show api key.
 
-
-Take a look at our wiki page...
