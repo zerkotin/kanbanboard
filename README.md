@@ -51,7 +51,7 @@ redmine.api.url=my.redmine.host
 kanbanboard.http.port=9090
 ```
 
-Then go to [localhost:9090](localhost:9090/) in your browser.
+Then go to `localhost:9090` in your browser.
 
 
 When developing you can run `grunt watch` and it will automatically transpile the coffee and less files when you make changes to the project.
