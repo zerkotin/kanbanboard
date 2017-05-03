@@ -57,7 +57,12 @@ Then go to `localhost:9090` in your browser.
 When developing you can run `grunt watch` and it will automatically transpile the coffee and less files when you make changes to the project.
 
 
-To get your Redmine API Key:  
-Login to redmine, go to my account,  
-and on the right panel, press show api key.
+### To get your Redmine API Key:  
+- Login to redmine
+- Go to my account,  
+- and on the right panel, press `Show API Key`
+- Copy paste it to the key field in Kanbanboard
+your'e all set, click `refresh` and you'll have your tickets.
+
+
 
