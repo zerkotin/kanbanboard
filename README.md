@@ -63,8 +63,19 @@ When developing you can run `grunt watch` and it will automatically transpile th
 - and on the right panel, press `Show API Key`
 - Copy paste it to the key field in Kanbanboard
 
-your'e all set, click `refresh` and you'll have your tickets.
+Your'e all set, click `refresh` and you'll have your tickets.
 
 
 ## How does it look?
 ![Kanbanboard](kanbanboard.jpg)
+Kanbanboard has a simple columns design and sliding menus.  
+Features:
+- Sliding Navigation on the left
+- Sliding Filters on the right
+- Removing columns
+- Saving queries and the API key in localstorage so you dont have to copy paste it all the time
+- Single refresh button to load your queries
+- Tickets expand and collapse to read the description
+- Drag and Drop tickets to change their status
+
+
