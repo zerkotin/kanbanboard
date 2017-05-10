@@ -15,12 +15,14 @@ kanbanboard is based on:
 * Less
 * FontAwesome
 
-take a look at the wonderful examples of CoffeesScript and Backbone with advanced stylesheets, responsive design without any framework interrupting, and a super lightweight and fast performing application.
+Take a look at the wonderful examples of CoffeesScript and Backbone with advanced stylesheets, responsive design without any framework interrupting and a super lightweight and fast performing application.
 
-kanbanboard is built with grunt and includes many grunt modules and features.
-take a look at Gruntfile.coffee for interesting examples...
+Kanbanboard is built with grunt and includes many grunt modules and features.
+Survey the Gruntfile.coffee for interesting examples...
 
-# kanbanboard installation notes
+Kanbanboard is running on a Node Express server and provides a server proxy module for Redmine.
+
+# Kanbanboard installation notes
 
 Before installation you must have nodejs installed, with bower and grunt-cli.
 
@@ -37,15 +39,15 @@ bower install
 grunt
 ```
 
-Afterwards, building the project consists of running `grunt` or `grunt distribution`
+Building the project consists of running `grunt` or `grunt distribution`
 
-dont forget to delete `build` and `_temp` directories before building a distribution version.
+Do not forget to delete `build` and `_temp` directories before building a distribution version.
 
 
-to run the project go to `build` directory and run `npm install` and then `npm start`
+To run the project go to `build` directory and run `npm install` and then `npm start`
 
-make sure you have a `kanbanboard.properties` file in build folder with a `redmine.api.url` property that points to your redmine host and a `kanbanboard.http.port` property with the http port for the web server.
-for example:
+Make sure you have a `kanbanboard.properties` file in build folder with a `redmine.api.url` property that points to your redmine host and a `kanbanboard.http.port` property with the http port for the web server.
+For example:
 ```
 redmine.api.url=my.redmine.host
 kanbanboard.http.port=9090
