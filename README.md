@@ -66,4 +66,5 @@ When developing you can run `grunt watch` and it will automatically transpile th
 your'e all set, click `refresh` and you'll have your tickets.
 
 
-
+## How does it look?
+![Kanbanboard](kanbanboard.jpg)
