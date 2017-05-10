@@ -1,19 +1,19 @@
 # Kanbanboard
 
-Kanbanboard integrates with Redmine and provides a better View and better UI experience.
+Kanbanboard integrates with [Redmine](http://www.redmine.org/) and provides a better View and better UI experience.
 
-kanbanboard is based on:
+Kanbanboard is based on:
 
-* Backbone
-* Underscode
-* JQuery
-* CoffeeScript
-* NodeJS
-* Express
-* Grunt
-* Browserify
-* Less
-* FontAwesome
+* [Backbone](http://backbonejs.org/)
+* [Underscode](http://underscorejs.org/)
+* [JQuery](https://jquery.com/)
+* [CoffeeScript](http://coffeescript.org/)
+* [NodeJS](https://nodejs.org/en/)
+* [Express](https://expressjs.com/)
+* [Grunt](https://gruntjs.com/)
+* [Browserify](http://browserify.org/)
+* [Less](http://lesscss.org/)
+* [FontAwesome](http://fontawesome.io/)
 
 Take a look at the wonderful examples of CoffeesScript and Backbone with advanced stylesheets, responsive design without any framework interrupting and a super lightweight and fast performing application.
 
