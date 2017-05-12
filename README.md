@@ -2,7 +2,7 @@
 
 Kanbanboard integrates with [Redmine](http://www.redmine.org/) and provides a better View and better UI experience.
 
-Kanbanboard is based on:
+## The Tools
 
 * [Backbone](http://backbonejs.org/)
 * [Underscode](http://underscorejs.org/)
@@ -22,7 +22,7 @@ Survey the Gruntfile.coffee for interesting examples...
 
 Kanbanboard is running on a Node Express server and provides a server proxy module for Redmine.
 
-# Kanbanboard installation notes
+## Kanbanboard installation notes
 
 Before installation you must have nodejs installed, with bower and grunt-cli.
 
